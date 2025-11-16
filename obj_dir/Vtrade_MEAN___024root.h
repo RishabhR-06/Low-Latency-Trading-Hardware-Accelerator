@@ -15,18 +15,11 @@ class Vtrade_MEAN___024root final : public VerilatedModule {
     // DESIGN SPECIFIC STATE
     VL_IN8(clk,0,0);
     VL_IN8(rst,0,0);
+    VL_IN8(short_sma,7,0);
+    VL_IN8(long_sma,7,0);
+    VL_IN8(current_data,7,0);
     VL_OUT8(buy_signal,0,0);
     VL_OUT8(sell_signal,0,0);
-    CData/*7:0*/ trade_MEAN__DOT__Preprocessor_mine__DOT__rom_dout;
-    CData/*0:0*/ __Vclklast__TOP__clk;
-    CData/*0:0*/ __Vclklast__TOP__rst;
-    SData/*15:0*/ trade_MEAN__DOT__Preprocessor_mine__DOT__rom_addr;
-    SData/*15:0*/ __Vdly__trade_MEAN__DOT__Preprocessor_mine__DOT__rom_addr;
-    IData/*31:0*/ trade_MEAN__DOT__Preprocessor_mine__DOT__win_10__DOT__sum;
-    IData/*31:0*/ trade_MEAN__DOT__Preprocessor_mine__DOT__win_50__DOT__sum;
-    VlUnpacked<CData/*7:0*/, 65536> trade_MEAN__DOT__Preprocessor_mine__DOT__my_rom__DOT__rom_array;
-    VlUnpacked<CData/*7:0*/, 10> trade_MEAN__DOT__Preprocessor_mine__DOT__win_10__DOT__Q;
-    VlUnpacked<CData/*7:0*/, 50> trade_MEAN__DOT__Preprocessor_mine__DOT__win_50__DOT__Q;
 
     // INTERNAL VARIABLES
     Vtrade_MEAN__Syms* const vlSymsp;

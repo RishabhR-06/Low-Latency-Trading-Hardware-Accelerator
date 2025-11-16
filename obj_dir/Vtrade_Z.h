@@ -26,8 +26,11 @@ class Vtrade_Z VL_NOT_FINAL : public VerilatedModel {
     // propagate new values into/out from the Verilated model.
     VL_IN8(&clk,0,0);
     VL_IN8(&rst,0,0);
+    VL_IN8(&N_mean,7,0);
+    VL_IN8(&current_data,7,0);
     VL_OUT8(&buy_signal,0,0);
     VL_OUT8(&sell_signal,0,0);
+    VL_IN16(&N_sqr_mean,15,0);
 
     // CELLS
     // Public to allow access to /* verilator public */ items.

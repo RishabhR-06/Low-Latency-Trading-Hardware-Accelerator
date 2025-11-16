@@ -3,27 +3,19 @@ module trade_MEAN #(
 )(
     input logic clk,
     input logic rst,
+    input logic[7:0] short_sma,
+    input logic[7:0] long_sma,
+    input logic[7:0] current_data,
     output logic buy_signal,
     output logic sell_signal
 );
 
-    logic [7:0] short_sma, long_sma, current_data;
     logic trend;
     logic [7:0] mid_range;
     logic [7:0] upper_bound, lower_bound;
+    logic buy_signal_next, sell_signal_next;
 
-    Preprocessor Preprocessor_mine (
-        .clk(clk),
-        .rst(rst),
-        .data_5(),
-        .data_10(short_sma),
-        .data_20(),
-        .data_50(long_sma),
-        .data_100(),
-        .data_200(),
-        .current_data(current_data),
-        .sqr_mean()
-    );
+
 
 
     assign trend = short_sma>long_sma;
@@ -31,8 +23,19 @@ module trade_MEAN #(
     assign upper_bound = mid_range + threshold;
     assign lower_bound = (mid_range > threshold) ? (mid_range - threshold) : 0;
 
-    assign buy_signal  = trend  && (current_data < lower_bound);
-    assign sell_signal = !trend && (current_data > upper_bound);
+    assign buy_signal_next  = trend  && (current_data < lower_bound);
+    assign sell_signal_next = !trend && (current_data > upper_bound);
+
+    always_ff @( posedge clk ) begin 
+        if (rst) begin
+            buy_signal  <= 1'b0;
+            sell_signal <= 1'b0;
+        end
+        else begin
+            buy_signal  <= buy_signal_next;
+            sell_signal <= sell_signal_next;
+        end
+    end
 
 
     

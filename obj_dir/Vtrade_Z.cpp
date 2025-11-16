@@ -12,8 +12,11 @@ Vtrade_Z::Vtrade_Z(VerilatedContext* _vcontextp__, const char* _vcname__)
     , vlSymsp{new Vtrade_Z__Syms(contextp(), _vcname__, this)}
     , clk{vlSymsp->TOP.clk}
     , rst{vlSymsp->TOP.rst}
+    , N_mean{vlSymsp->TOP.N_mean}
+    , current_data{vlSymsp->TOP.current_data}
     , buy_signal{vlSymsp->TOP.buy_signal}
     , sell_signal{vlSymsp->TOP.sell_signal}
+    , N_sqr_mean{vlSymsp->TOP.N_sqr_mean}
     , rootp{&(vlSymsp->TOP)}
 {
     // Register model with the context

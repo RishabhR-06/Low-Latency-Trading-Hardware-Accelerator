@@ -26,6 +26,9 @@ class Vtrade_MEAN VL_NOT_FINAL : public VerilatedModel {
     // propagate new values into/out from the Verilated model.
     VL_IN8(&clk,0,0);
     VL_IN8(&rst,0,0);
+    VL_IN8(&short_sma,7,0);
+    VL_IN8(&long_sma,7,0);
+    VL_IN8(&current_data,7,0);
     VL_OUT8(&buy_signal,0,0);
     VL_OUT8(&sell_signal,0,0);
 

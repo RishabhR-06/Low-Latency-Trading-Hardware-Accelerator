@@ -12,6 +12,9 @@ Vtrade_MEAN::Vtrade_MEAN(VerilatedContext* _vcontextp__, const char* _vcname__)
     , vlSymsp{new Vtrade_MEAN__Syms(contextp(), _vcname__, this)}
     , clk{vlSymsp->TOP.clk}
     , rst{vlSymsp->TOP.rst}
+    , short_sma{vlSymsp->TOP.short_sma}
+    , long_sma{vlSymsp->TOP.long_sma}
+    , current_data{vlSymsp->TOP.current_data}
     , buy_signal{vlSymsp->TOP.buy_signal}
     , sell_signal{vlSymsp->TOP.sell_signal}
     , rootp{&(vlSymsp->TOP)}

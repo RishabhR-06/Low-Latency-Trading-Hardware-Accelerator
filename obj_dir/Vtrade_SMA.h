@@ -26,6 +26,12 @@ class Vtrade_SMA VL_NOT_FINAL : public VerilatedModel {
     // propagate new values into/out from the Verilated model.
     VL_IN8(&clk,0,0);
     VL_IN8(&rst,0,0);
+    VL_IN8(&data_5,7,0);
+    VL_IN8(&data_10,7,0);
+    VL_IN8(&data_20,7,0);
+    VL_IN8(&data_50,7,0);
+    VL_IN8(&data_100,7,0);
+    VL_IN8(&data_200,7,0);
     VL_OUT8(&buy_signal,0,0);
     VL_OUT8(&sell_signal,0,0);
 

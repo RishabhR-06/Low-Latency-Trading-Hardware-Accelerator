@@ -4,7 +4,7 @@
 # Execute this makefile from the object directory:
 #    make -f Vtrade_MEAN.mk
 
-default: Vtrade_MEAN
+default: Vtrade_MEAN__ALL.a
 
 ### Constants...
 # Perl executable (from $PERL)
@@ -41,11 +41,9 @@ VM_USER_LDLIBS = \
 
 # User .cpp files (from .cpp's on Verilator command line)
 VM_USER_CLASSES = \
-	trade_MEAN_tb \
 
 # User .cpp directories (from .cpp's on Verilator command line)
 VM_USER_DIR = \
-	. \
 
 
 ### Default rules...
@@ -53,16 +51,5 @@ VM_USER_DIR = \
 include Vtrade_MEAN_classes.mk
 # Include global rules
 include $(VERILATOR_ROOT)/include/verilated.mk
-
-### Executable rules... (from --exe)
-VPATH += $(VM_USER_DIR)
-
-trade_MEAN_tb.o: trade_MEAN_tb.cpp
-	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-
-### Link rules... (from --exe)
-Vtrade_MEAN: $(VK_USER_OBJS) $(VK_GLOBAL_OBJS) $(VM_PREFIX)__ALL.a $(VM_HIER_LIBS)
-	$(LINK) $(LDFLAGS) $^ $(LOADLIBES) $(LDLIBS) $(LIBS) $(SC_LIBS) -o $@
-
 
 # Verilated -*- Makefile -*-

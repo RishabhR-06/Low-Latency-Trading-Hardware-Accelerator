@@ -12,6 +12,12 @@ Vtrade_SMA::Vtrade_SMA(VerilatedContext* _vcontextp__, const char* _vcname__)
     , vlSymsp{new Vtrade_SMA__Syms(contextp(), _vcname__, this)}
     , clk{vlSymsp->TOP.clk}
     , rst{vlSymsp->TOP.rst}
+    , data_5{vlSymsp->TOP.data_5}
+    , data_10{vlSymsp->TOP.data_10}
+    , data_20{vlSymsp->TOP.data_20}
+    , data_50{vlSymsp->TOP.data_50}
+    , data_100{vlSymsp->TOP.data_100}
+    , data_200{vlSymsp->TOP.data_200}
     , buy_signal{vlSymsp->TOP.buy_signal}
     , sell_signal{vlSymsp->TOP.sell_signal}
     , rootp{&(vlSymsp->TOP)}
