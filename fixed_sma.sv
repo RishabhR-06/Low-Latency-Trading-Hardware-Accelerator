@@ -17,11 +17,16 @@ module fixed_sma #(
             sum <= 32'b0;
             Q <= '{default:8'b0};
         end else begin
-            sum <= sum + {{(32-8){1'b0}},data_in} - {{(32-8){1'b0}},Q[window-1]};
+            // Uses a sliding window to maintain the sum of the last 'window' inputs saves resources
+            sum <= sum + {{(32-8){1'b0}},data_in} - {{(32-8){1'b0}},Q[window-1]}; 
             Q[window-1:1] <= Q[window-2:0];
-            Q[0] <= data_in;
+            Q[0] <= data_in; 
         end         
     end
+
+    // considered using only powers of 2 for window size to use bit shifting and save resources
+    // but decided against it for flexibility and strategy purposes
+
     assign avg = sum / window;
     assign data_out = avg[7:0];
     

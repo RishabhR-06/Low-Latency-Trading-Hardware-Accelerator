@@ -11,14 +11,17 @@ module Preprocessor (
     output logic[7:0] current_data,
     output logic[15:0] sqr_mean
 );
+    // module carries out all preprocessing steps: SMAs and squared mean calculation
+    // selected the windows based on common trading strategy timeframes
 
+    
     sec_mom #(
         .window(20)
     ) sec_mom_mine (
         .data_in(data_in),
         .clk(clk),
         .rst(rst),
-        .data_out(sqr_mean)  // Unused output
+        .data_out(sqr_mean)
     );
 
     

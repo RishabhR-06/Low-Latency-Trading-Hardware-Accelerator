@@ -12,7 +12,7 @@ module TLU (
     logic buy_mean, sell_mean;
     logic buy_z, sell_z;
 
-
+    // preprocessing module to get SMAs and squared mean
     Preprocessor preproc_inst (
         .clk(clk),
         .rst(rst),
@@ -26,6 +26,9 @@ module TLU (
         .current_data(current_data),
         .sqr_mean(sqr_mean)
     );
+
+
+    // trading strategy modules
 
     trade_SMA #(
         .threshold(9'd77),
@@ -64,16 +67,17 @@ module TLU (
     );
 
 
-
+    // TLU logic to combine signals from different strategies
     logic [2:0] buy_score, sell_score;
 
     always_comb begin
+        // different weights for different strategies
         buy_score  = (buy_mean? 3'd2 : 3'd0) + (buy_sma? 3'd3 : 3'd0) +(buy_z? 3'd1 : 3'd0);
 
         sell_score = (sell_mean? 3'd3 : 3'd0) + (sell_sma? 3'd2 : 3'd0) +(sell_z? 3'd1 : 3'd0);
     end
 
-
+    // generating final buy/sell signals based on scores
     always_ff @(posedge clk) begin
         if (rst) begin
             buy_signal  <= 1'b0;

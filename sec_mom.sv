@@ -12,7 +12,7 @@ module sec_mom #(
     logic [31:0] sqr_sum;
     logic [31:0] avg;
     logic [15:0] data_in_sq;
-    // Module implementation goes here
+    // very similar to fixed_sma but calculates the mean of the squared inputs
     assign data_in_sq = data_in * data_in;
     always_ff @( posedge clk ) begin
         if (rst) begin
@@ -24,6 +24,7 @@ module sec_mom #(
             Q[0] <= data_in_sq;
         end         
     end
+    
     assign avg = sqr_sum / window;
     assign data_out = avg[15:0];
     

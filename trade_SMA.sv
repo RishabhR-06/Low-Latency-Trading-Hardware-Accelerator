@@ -1,5 +1,6 @@
 module trade_SMA #(
-    parameter [8:0] threshold = 9'd77,
+    // makes it adjustable from TLU
+    parameter [8:0] threshold = 9'd77,  
     parameter [1:0] confluence_threshold = 2'd3
 )(
     input logic clk,
@@ -13,6 +14,8 @@ module trade_SMA #(
     output logic buy_signal,
     output logic sell_signal
 );
+
+
     logic [7:0] prev_5, prev_10, prev_20, prev_50, prev_100, prev_200;
     logic rising_5, rising_10, rising_20, rising_50, rising_100, rising_200;
     logic falling_5, falling_10, falling_20, falling_50, falling_100, falling_200;
@@ -22,6 +25,10 @@ module trade_SMA #(
     logic confluence_rising, confluence_falling;
 
     logic buy_signal_next, sell_signal_next;
+
+    // getting previous SMA values for trend detection
+    // can be made more efficient with shift registers if needed
+    // but FPGA compiler should be able to optimise this
 
     always_ff @( posedge clk ) begin
         if (rst) begin
@@ -62,26 +69,32 @@ module trade_SMA #(
         
     end   
 
-
+    //implementing scoring system for trend strength
     assign up_score   = (data_5 - data_20) + (data_10 - data_50);
     assign down_score = (data_20 - data_5) + (data_50 - data_10);
     assign strong_uptrend   = up_score > threshold;
     assign strong_downtrend = down_score > threshold;
 
+
+    // confluence detection
     always_ff @( posedge clk ) begin 
         if (rst) begin
             confluence_rising <= 1'b0;
             confluence_falling <= 1'b0;
         end
         else begin
+            // counting how many SMAs are rising/falling
             confluence_rising <= (rising_5 + rising_10 + rising_20 + rising_50 + rising_100 + rising_200) >= confluence_threshold;
             confluence_falling <= (falling_5 + falling_10 + falling_20 + falling_50 + falling_100 + falling_200) >= confluence_threshold;
         end
     end
 
+    // generating buy/sell signals based on trend strength and confluence
     assign buy_signal_next  = strong_uptrend && confluence_rising;
     assign sell_signal_next = strong_downtrend && confluence_falling;
     
+
+    // synchronising the signals for TPU
     always_ff @( posedge clk ) begin 
         if (rst) begin
             buy_signal  <= 1'b0;
