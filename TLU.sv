@@ -1,6 +1,7 @@
 module TLU (
     input logic clk,
     input logic rst,
+    input logic[7:0] data_in,
     output logic buy_signal,
     output logic sell_signal
 );
@@ -15,6 +16,7 @@ module TLU (
     Preprocessor preproc_inst (
         .clk(clk),
         .rst(rst),
+        .data_in(data_in),
         .data_5(data_5),
         .data_10(data_10),
         .data_20(data_20),
