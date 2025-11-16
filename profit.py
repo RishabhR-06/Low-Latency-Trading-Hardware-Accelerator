@@ -8,9 +8,9 @@ import yfinance as yf
 stock_file = "stock.mem"
 buy_file = "buy_signal.mem"
 sell_file = "sell_signal.mem"
-symbol = "^IXIC"            # Stock symbol (must match stock.mem)
-units_per_trade = 20    # units bought/sold per signal
-max_units_budget = 20     # maximum units you can hold at any time
+symbol = "NVDA"            # Stock symbol (must match stock.mem)
+units_per_trade = 1    # units bought/sold per signal
+max_units_budget = 1     # maximum units you can hold at any time
 
 # -------------------------------
 # Function to load memory file

@@ -23,14 +23,14 @@ module Preprocessor (
         .dout(rom_dout)
     );
 
-    /*sec_mom #(
+    sec_mom #(
         .window(20)
     ) sec_mom_mine (
         .data_in(rom_dout),
         .clk(clk),
         .rst(rst),
         .data_out(sqr_mean)  // Unused output
-    );*/
+    );
 
     
     fixed_sma #(

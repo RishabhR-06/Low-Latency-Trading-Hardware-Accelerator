@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 # -------------------------------
 # Parameters
 # -------------------------------
-symbol = "^IXIC"            # Stock symbol (e.g. AAPL, TSLA, NVDA)
+symbol = "NVDA"            # Stock symbol (e.g. AAPL, TSLA, NVDA)
 period = "7d"             # Time period: "1mo", "3mo", "1y", etc.
 interval = "1m"            # Interval: "1h", "1d", "5m", etc.
 output_file = "stock.mem"  # Output memory file name
