@@ -11,25 +11,25 @@ VL_INLINE_OPT void Vsec_mom___024root___sequent__TOP__0(Vsec_mom___024root* vlSe
     Vsec_mom__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vsec_mom___024root___sequent__TOP__0\n"); );
     // Init
-    IData/*31:0*/ __Vdly__sec_mom__DOT__sum;
+    IData/*31:0*/ __Vdly__sec_mom__DOT__sqr_sum;
     CData/*0:0*/ __Vdlyvset__sec_mom__DOT__Q__v0;
-    CData/*7:0*/ __Vdlyvval__sec_mom__DOT__Q__v4;
+    SData/*15:0*/ __Vdlyvval__sec_mom__DOT__Q__v4;
     CData/*0:0*/ __Vdlyvset__sec_mom__DOT__Q__v4;
-    CData/*7:0*/ __Vdlyvval__sec_mom__DOT__Q__v5;
-    CData/*7:0*/ __Vdlyvval__sec_mom__DOT__Q__v6;
-    CData/*7:0*/ __Vdlyvval__sec_mom__DOT__Q__v7;
+    SData/*15:0*/ __Vdlyvval__sec_mom__DOT__Q__v5;
+    SData/*15:0*/ __Vdlyvval__sec_mom__DOT__Q__v6;
+    SData/*15:0*/ __Vdlyvval__sec_mom__DOT__Q__v7;
     // Body
-    __Vdly__sec_mom__DOT__sum = vlSelf->sec_mom__DOT__sum;
+    __Vdly__sec_mom__DOT__sqr_sum = vlSelf->sec_mom__DOT__sqr_sum;
     __Vdlyvset__sec_mom__DOT__Q__v0 = 0U;
     __Vdlyvset__sec_mom__DOT__Q__v4 = 0U;
     if (vlSelf->rst) {
-        __Vdly__sec_mom__DOT__sum = 0U;
+        __Vdly__sec_mom__DOT__sqr_sum = 0U;
         __Vdlyvset__sec_mom__DOT__Q__v0 = 1U;
     } else {
-        __Vdly__sec_mom__DOT__sum = ((vlSelf->sec_mom__DOT__sum 
-                                      + (IData)(vlSelf->data_in)) 
-                                     - vlSelf->sec_mom__DOT__Q
-                                     [3U]);
+        __Vdly__sec_mom__DOT__sqr_sum = ((vlSelf->sec_mom__DOT__sqr_sum 
+                                          + (IData)(vlSelf->sec_mom__DOT__data_in_sq)) 
+                                         - vlSelf->sec_mom__DOT__Q
+                                         [3U]);
         __Vdlyvval__sec_mom__DOT__Q__v4 = vlSelf->sec_mom__DOT__Q
             [2U];
         __Vdlyvset__sec_mom__DOT__Q__v4 = 1U;
@@ -37,7 +37,7 @@ VL_INLINE_OPT void Vsec_mom___024root___sequent__TOP__0(Vsec_mom___024root* vlSe
             [1U];
         __Vdlyvval__sec_mom__DOT__Q__v6 = vlSelf->sec_mom__DOT__Q
             [0U];
-        __Vdlyvval__sec_mom__DOT__Q__v7 = vlSelf->data_in;
+        __Vdlyvval__sec_mom__DOT__Q__v7 = vlSelf->sec_mom__DOT__data_in_sq;
     }
     if (__Vdlyvset__sec_mom__DOT__Q__v0) {
         vlSelf->sec_mom__DOT__Q[3U] = 0U;
@@ -51,10 +51,18 @@ VL_INLINE_OPT void Vsec_mom___024root___sequent__TOP__0(Vsec_mom___024root* vlSe
         vlSelf->sec_mom__DOT__Q[1U] = __Vdlyvval__sec_mom__DOT__Q__v6;
         vlSelf->sec_mom__DOT__Q[0U] = __Vdlyvval__sec_mom__DOT__Q__v7;
     }
-    vlSelf->sec_mom__DOT__sum = __Vdly__sec_mom__DOT__sum;
-    vlSelf->data_out = (0xffU & ((vlSelf->sec_mom__DOT__sum 
-                                  * vlSelf->sec_mom__DOT__sum) 
-                                 >> 2U));
+    vlSelf->sec_mom__DOT__sqr_sum = __Vdly__sec_mom__DOT__sqr_sum;
+    vlSelf->data_out = (0xffffU & (vlSelf->sec_mom__DOT__sqr_sum 
+                                   >> 2U));
+}
+
+VL_INLINE_OPT void Vsec_mom___024root___combo__TOP__0(Vsec_mom___024root* vlSelf) {
+    if (false && vlSelf) {}  // Prevent unused
+    Vsec_mom__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
+    VL_DEBUG_IF(VL_DBG_MSGF("+    Vsec_mom___024root___combo__TOP__0\n"); );
+    // Body
+    vlSelf->sec_mom__DOT__data_in_sq = (0xffffU & ((IData)(vlSelf->data_in) 
+                                                   * (IData)(vlSelf->data_in)));
 }
 
 void Vsec_mom___024root___eval(Vsec_mom___024root* vlSelf) {
@@ -65,6 +73,7 @@ void Vsec_mom___024root___eval(Vsec_mom___024root* vlSelf) {
     if (((IData)(vlSelf->clk) & (~ (IData)(vlSelf->__Vclklast__TOP__clk)))) {
         Vsec_mom___024root___sequent__TOP__0(vlSelf);
     }
+    Vsec_mom___024root___combo__TOP__0(vlSelf);
     // Final
     vlSelf->__Vclklast__TOP__clk = vlSelf->clk;
 }

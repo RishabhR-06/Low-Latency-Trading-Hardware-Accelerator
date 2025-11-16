@@ -11,9 +11,10 @@ VL_ATTR_COLD void Vsec_mom___024root___settle__TOP__0(Vsec_mom___024root* vlSelf
     Vsec_mom__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vsec_mom___024root___settle__TOP__0\n"); );
     // Body
-    vlSelf->data_out = (0xffU & ((vlSelf->sec_mom__DOT__sum 
-                                  * vlSelf->sec_mom__DOT__sum) 
-                                 >> 2U));
+    vlSelf->sec_mom__DOT__data_in_sq = (0xffffU & ((IData)(vlSelf->data_in) 
+                                                   * (IData)(vlSelf->data_in)));
+    vlSelf->data_out = (0xffffU & (vlSelf->sec_mom__DOT__sqr_sum 
+                                   >> 2U));
 }
 
 VL_ATTR_COLD void Vsec_mom___024root___eval_initial(Vsec_mom___024root* vlSelf) {
@@ -46,9 +47,10 @@ VL_ATTR_COLD void Vsec_mom___024root___ctor_var_reset(Vsec_mom___024root* vlSelf
     vlSelf->data_in = VL_RAND_RESET_I(8);
     vlSelf->clk = VL_RAND_RESET_I(1);
     vlSelf->rst = VL_RAND_RESET_I(1);
-    vlSelf->data_out = VL_RAND_RESET_I(8);
+    vlSelf->data_out = VL_RAND_RESET_I(16);
     for (int __Vi0=0; __Vi0<4; ++__Vi0) {
-        vlSelf->sec_mom__DOT__Q[__Vi0] = VL_RAND_RESET_I(8);
+        vlSelf->sec_mom__DOT__Q[__Vi0] = VL_RAND_RESET_I(16);
     }
-    vlSelf->sec_mom__DOT__sum = VL_RAND_RESET_I(32);
+    vlSelf->sec_mom__DOT__sqr_sum = VL_RAND_RESET_I(32);
+    vlSelf->sec_mom__DOT__data_in_sq = VL_RAND_RESET_I(16);
 }

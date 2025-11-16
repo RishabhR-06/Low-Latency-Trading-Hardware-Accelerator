@@ -25,23 +25,23 @@ class Vtrade_SMA___024root final : public VerilatedModule {
     CData/*7:0*/ trade_SMA__DOT__prev_200;
     CData/*0:0*/ trade_SMA__DOT__confluence_rising;
     CData/*0:0*/ trade_SMA__DOT__confluence_falling;
-    CData/*7:0*/ trade_SMA__DOT__SMA_preprocessor_mine__DOT__rom_dout;
+    CData/*7:0*/ trade_SMA__DOT__Preprocessor_mine__DOT__rom_dout;
     CData/*0:0*/ __Vclklast__TOP__clk;
     CData/*0:0*/ __Vclklast__TOP__rst;
-    SData/*15:0*/ trade_SMA__DOT__SMA_preprocessor_mine__DOT__rom_addr;
-    IData/*31:0*/ trade_SMA__DOT__SMA_preprocessor_mine__DOT__win_5__DOT__sum;
-    IData/*31:0*/ trade_SMA__DOT__SMA_preprocessor_mine__DOT__win_10__DOT__sum;
-    IData/*31:0*/ trade_SMA__DOT__SMA_preprocessor_mine__DOT__win_20__DOT__sum;
-    IData/*31:0*/ trade_SMA__DOT__SMA_preprocessor_mine__DOT__win_50__DOT__sum;
-    IData/*31:0*/ trade_SMA__DOT__SMA_preprocessor_mine__DOT__win_100__DOT__sum;
-    IData/*31:0*/ trade_SMA__DOT__SMA_preprocessor_mine__DOT__win_200__DOT__sum;
-    VlUnpacked<CData/*7:0*/, 65536> trade_SMA__DOT__SMA_preprocessor_mine__DOT__my_rom__DOT__rom_array;
-    VlUnpacked<CData/*7:0*/, 5> trade_SMA__DOT__SMA_preprocessor_mine__DOT__win_5__DOT__Q;
-    VlUnpacked<CData/*7:0*/, 10> trade_SMA__DOT__SMA_preprocessor_mine__DOT__win_10__DOT__Q;
-    VlUnpacked<CData/*7:0*/, 20> trade_SMA__DOT__SMA_preprocessor_mine__DOT__win_20__DOT__Q;
-    VlUnpacked<CData/*7:0*/, 50> trade_SMA__DOT__SMA_preprocessor_mine__DOT__win_50__DOT__Q;
-    VlUnpacked<CData/*7:0*/, 100> trade_SMA__DOT__SMA_preprocessor_mine__DOT__win_100__DOT__Q;
-    VlUnpacked<CData/*7:0*/, 200> trade_SMA__DOT__SMA_preprocessor_mine__DOT__win_200__DOT__Q;
+    SData/*15:0*/ trade_SMA__DOT__Preprocessor_mine__DOT__rom_addr;
+    IData/*31:0*/ trade_SMA__DOT__Preprocessor_mine__DOT__win_5__DOT__sum;
+    IData/*31:0*/ trade_SMA__DOT__Preprocessor_mine__DOT__win_10__DOT__sum;
+    IData/*31:0*/ trade_SMA__DOT__Preprocessor_mine__DOT__win_20__DOT__sum;
+    IData/*31:0*/ trade_SMA__DOT__Preprocessor_mine__DOT__win_50__DOT__sum;
+    IData/*31:0*/ trade_SMA__DOT__Preprocessor_mine__DOT__win_100__DOT__sum;
+    IData/*31:0*/ trade_SMA__DOT__Preprocessor_mine__DOT__win_200__DOT__sum;
+    VlUnpacked<CData/*7:0*/, 65536> trade_SMA__DOT__Preprocessor_mine__DOT__my_rom__DOT__rom_array;
+    VlUnpacked<CData/*7:0*/, 5> trade_SMA__DOT__Preprocessor_mine__DOT__win_5__DOT__Q;
+    VlUnpacked<CData/*7:0*/, 10> trade_SMA__DOT__Preprocessor_mine__DOT__win_10__DOT__Q;
+    VlUnpacked<CData/*7:0*/, 20> trade_SMA__DOT__Preprocessor_mine__DOT__win_20__DOT__Q;
+    VlUnpacked<CData/*7:0*/, 50> trade_SMA__DOT__Preprocessor_mine__DOT__win_50__DOT__Q;
+    VlUnpacked<CData/*7:0*/, 100> trade_SMA__DOT__Preprocessor_mine__DOT__win_100__DOT__Q;
+    VlUnpacked<CData/*7:0*/, 200> trade_SMA__DOT__Preprocessor_mine__DOT__win_200__DOT__Q;
 
     // INTERNAL VARIABLES
     Vtrade_SMA__Syms* const vlSymsp;

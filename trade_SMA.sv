@@ -1,6 +1,6 @@
 module trade_SMA #(
-    parameter [8:0] threshold = 9'd77;
-    parameter [1:0] confluence_threshold = 2'd3;
+    parameter [8:0] threshold = 9'd77,
+    parameter [1:0] confluence_threshold = 2'd3
 )(
     input logic clk,
     input logic rst,
@@ -29,7 +29,8 @@ module trade_SMA #(
         .data_50(data_50),
         .data_100(data_100),
         .data_200(data_200),
-        .current_data()  // Unused output
+        .current_data(),
+        .sqr_mean()  // Unused output
     );
 
     always_ff @( posedge clk ) begin

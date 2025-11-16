@@ -27,7 +27,7 @@ class Vsec_mom VL_NOT_FINAL : public VerilatedModel {
     VL_IN8(&clk,0,0);
     VL_IN8(&data_in,7,0);
     VL_IN8(&rst,0,0);
-    VL_OUT8(&data_out,7,0);
+    VL_OUT16(&data_out,15,0);
 
     // CELLS
     // Public to allow access to /* verilator public */ items.

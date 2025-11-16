@@ -21,7 +21,8 @@ module trade_MEAN #(
         .data_50(long_sma),
         .data_100(),
         .data_200(),
-        .current_data(current_data)
+        .current_data(current_data),
+        .sqr_mean()
     );
 
 

@@ -16,10 +16,11 @@ class Vsec_mom___024root final : public VerilatedModule {
     VL_IN8(clk,0,0);
     VL_IN8(data_in,7,0);
     VL_IN8(rst,0,0);
-    VL_OUT8(data_out,7,0);
     CData/*0:0*/ __Vclklast__TOP__clk;
-    IData/*31:0*/ sec_mom__DOT__sum;
-    VlUnpacked<CData/*7:0*/, 4> sec_mom__DOT__Q;
+    VL_OUT16(data_out,15,0);
+    SData/*15:0*/ sec_mom__DOT__data_in_sq;
+    IData/*31:0*/ sec_mom__DOT__sqr_sum;
+    VlUnpacked<SData/*15:0*/, 4> sec_mom__DOT__Q;
 
     // INTERNAL VARIABLES
     Vsec_mom__Syms* const vlSymsp;

@@ -8,7 +8,7 @@ module Preprocessor (
     output logic[7:0] data_100,
     output logic[7:0] data_200,
     output logic[7:0] current_data,
-    output logic[15:0] sqr_mean 
+    output logic[15:0] sqr_mean
 );
     // Instantiate ROM
     logic [7:0] rom_dout;
@@ -23,14 +23,14 @@ module Preprocessor (
         .dout(rom_dout)
     );
 
-    sec_mom #(
+    /*sec_mom #(
         .window(20)
     ) sec_mom_mine (
         .data_in(rom_dout),
         .clk(clk),
         .rst(rst),
         .data_out(sqr_mean)  // Unused output
-    );
+    );*/
 
     
     fixed_sma #(
