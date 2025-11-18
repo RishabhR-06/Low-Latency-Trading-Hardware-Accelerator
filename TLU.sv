@@ -31,8 +31,8 @@ module TLU (
     // trading strategy modules
 
     trade_SMA #(
-        .threshold(9'd77),
-        .confluence_threshold(2'd3)     
+        .threshold(9'd64),
+        .confluence_threshold(2'd2)     
     )trade_sma_inst (
         .clk(clk),
         .rst(rst),
@@ -56,7 +56,9 @@ module TLU (
         .sell_signal(sell_mean)
     );
 
-    trade_Z trade_z_inst (
+    trade_Z #(
+        .Z_threshold(16'd512)  // standard deviation threshold of 2
+    )trade_z_inst (
         .clk(clk),
         .rst(rst),
         .N_mean(data_20),
@@ -72,9 +74,13 @@ module TLU (
 
     always_comb begin
         // different weights for different strategies
-        buy_score  = (buy_mean? 3'd2 : 3'd0) + (buy_sma? 3'd3 : 3'd0) +(buy_z? 3'd1 : 3'd0);
+        buy_score  = (buy_mean? 3'd4 : 3'd0)
+                    +(buy_sma? 3'd2 : 3'd0)
+                    +(buy_z? 3'd1 : 3'd0); 
 
-        sell_score = (sell_mean? 3'd3 : 3'd0) + (sell_sma? 3'd2 : 3'd0) +(sell_z? 3'd1 : 3'd0);
+        sell_score = (sell_mean? 3'd2 : 3'd0) 
+                    + (sell_sma? 3'd2 : 3'd0) 
+                    +(sell_z? 3'd1 : 3'd0);
     end
 
     // generating final buy/sell signals based on scores

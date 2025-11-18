@@ -19,8 +19,8 @@ VL_INLINE_OPT void Vtop_TLU___024root___sequent__TOP__0(Vtop_TLU___024root* vlSe
                                                      + (IData)(vlSelf->top_TLU__DOT__rom_addr))));
 }
 
-extern const VlUnpacked<CData/*2:0*/, 64> Vtop_TLU__ConstPool__TABLE_he6469fab_0;
-extern const VlUnpacked<CData/*2:0*/, 64> Vtop_TLU__ConstPool__TABLE_h626842c6_0;
+extern const VlUnpacked<CData/*2:0*/, 64> Vtop_TLU__ConstPool__TABLE_h9bd5dc9b_0;
+extern const VlUnpacked<CData/*2:0*/, 64> Vtop_TLU__ConstPool__TABLE_h4f3bf15d_0;
 
 VL_INLINE_OPT void Vtop_TLU___024root___sequent__TOP__1(Vtop_TLU___024root* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused
@@ -504,21 +504,21 @@ VL_INLINE_OPT void Vtop_TLU___024root___sequent__TOP__1(Vtop_TLU___024root* vlSe
                                             : 0U))));
     vlSelf->top_TLU__DOT__tlu_inst__DOT__sell_z = (
                                                    (~ (IData)(vlSelf->rst)) 
-                                                   & ((0x100U 
+                                                   & ((0x200U 
                                                        < (IData)(vlSelf->top_TLU__DOT__tlu_inst__DOT__trade_z_inst__DOT__z_score)) 
                                                       & ((IData)(vlSelf->top_TLU__DOT__data_in) 
                                                          > 
                                                          (0xffU 
                                                           & VL_DIV_III(32, vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_20__DOT__sum, (IData)(0x14U))))));
     vlSelf->top_TLU__DOT__tlu_inst__DOT__buy_z = ((~ (IData)(vlSelf->rst)) 
-                                                  & ((0x100U 
+                                                  & ((0x200U 
                                                       < (IData)(vlSelf->top_TLU__DOT__tlu_inst__DOT__trade_z_inst__DOT__z_score)) 
                                                      & ((IData)(vlSelf->top_TLU__DOT__data_in) 
                                                         < 
                                                         (0xffU 
                                                          & VL_DIV_III(32, vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_20__DOT__sum, (IData)(0x14U))))));
     vlSelf->top_TLU__DOT__tlu_inst__DOT__sell_sma = 
-        ((~ (IData)(vlSelf->rst)) & ((0x4dU < (0x1ffU 
+        ((~ (IData)(vlSelf->rst)) & ((0x40U < (0x1ffU 
                                                & (((0xffU 
                                                     & VL_DIV_III(32, vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_20__DOT__sum, (IData)(0x14U))) 
                                                    - 
@@ -532,7 +532,7 @@ VL_INLINE_OPT void Vtop_TLU___024root___sequent__TOP__1(Vtop_TLU___024root* vlSe
                                                     & VL_DIV_III(32, vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_10__DOT__sum, (IData)(0xaU))))))) 
                                      & (IData)(vlSelf->top_TLU__DOT__tlu_inst__DOT__trade_sma_inst__DOT__confluence_falling)));
     vlSelf->top_TLU__DOT__tlu_inst__DOT__buy_sma = 
-        ((~ (IData)(vlSelf->rst)) & ((0x4dU < (0x1ffU 
+        ((~ (IData)(vlSelf->rst)) & ((0x40U < (0x1ffU 
                                                & (((0xffU 
                                                     & VL_DIV_III(32, vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_5__DOT__sum, (IData)(5U))) 
                                                    - 
@@ -2741,7 +2741,7 @@ VL_INLINE_OPT void Vtop_TLU___024root___sequent__TOP__1(Vtop_TLU___024root* vlSe
             = __Vdlyvval__top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_200__DOT__Q__v399;
     }
     vlSelf->top_TLU__DOT__tlu_inst__DOT__trade_sma_inst__DOT__confluence_falling 
-        = ((~ (IData)(vlSelf->rst)) & (3U <= (3U & 
+        = ((~ (IData)(vlSelf->rst)) & (2U <= (3U & 
                                               (((((((0xffU 
                                                      & VL_DIV_III(32, vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_5__DOT__sum, (IData)(5U))) 
                                                     < (IData)(vlSelf->top_TLU__DOT__tlu_inst__DOT__trade_sma_inst__DOT__prev_5)) 
@@ -2774,11 +2774,11 @@ VL_INLINE_OPT void Vtop_TLU___024root___sequent__TOP__1(Vtop_TLU___024root* vlSe
                                                << 1U) 
                                               | (IData)(vlSelf->top_TLU__DOT__tlu_inst__DOT__buy_mean))))));
     vlSelf->top_TLU__DOT__tlu_inst__DOT__buy_score 
-        = Vtop_TLU__ConstPool__TABLE_he6469fab_0[__Vtableidx1];
+        = Vtop_TLU__ConstPool__TABLE_h9bd5dc9b_0[__Vtableidx1];
     vlSelf->top_TLU__DOT__tlu_inst__DOT__sell_score 
-        = Vtop_TLU__ConstPool__TABLE_h626842c6_0[__Vtableidx1];
+        = Vtop_TLU__ConstPool__TABLE_h4f3bf15d_0[__Vtableidx1];
     vlSelf->top_TLU__DOT__tlu_inst__DOT__trade_sma_inst__DOT__confluence_rising 
-        = ((~ (IData)(vlSelf->rst)) & (3U <= (3U & 
+        = ((~ (IData)(vlSelf->rst)) & (2U <= (3U & 
                                               (((((((0xffU 
                                                      & VL_DIV_III(32, vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_5__DOT__sum, (IData)(5U))) 
                                                     > (IData)(vlSelf->top_TLU__DOT__tlu_inst__DOT__trade_sma_inst__DOT__prev_5)) 
