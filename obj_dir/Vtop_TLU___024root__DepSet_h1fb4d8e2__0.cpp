@@ -19,8 +19,8 @@ VL_INLINE_OPT void Vtop_TLU___024root___sequent__TOP__0(Vtop_TLU___024root* vlSe
                                                      + (IData)(vlSelf->top_TLU__DOT__rom_addr))));
 }
 
-extern const VlUnpacked<CData/*2:0*/, 64> Vtop_TLU__ConstPool__TABLE_h9bd5dc9b_0;
-extern const VlUnpacked<CData/*2:0*/, 64> Vtop_TLU__ConstPool__TABLE_h4f3bf15d_0;
+extern const VlUnpacked<CData/*2:0*/, 64> Vtop_TLU__ConstPool__TABLE_h0784e10c_0;
+extern const VlUnpacked<CData/*2:0*/, 64> Vtop_TLU__ConstPool__TABLE_h165401b8_0;
 
 VL_INLINE_OPT void Vtop_TLU___024root___sequent__TOP__1(Vtop_TLU___024root* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused
@@ -2774,9 +2774,9 @@ VL_INLINE_OPT void Vtop_TLU___024root___sequent__TOP__1(Vtop_TLU___024root* vlSe
                                                << 1U) 
                                               | (IData)(vlSelf->top_TLU__DOT__tlu_inst__DOT__buy_mean))))));
     vlSelf->top_TLU__DOT__tlu_inst__DOT__buy_score 
-        = Vtop_TLU__ConstPool__TABLE_h9bd5dc9b_0[__Vtableidx1];
+        = Vtop_TLU__ConstPool__TABLE_h0784e10c_0[__Vtableidx1];
     vlSelf->top_TLU__DOT__tlu_inst__DOT__sell_score 
-        = Vtop_TLU__ConstPool__TABLE_h4f3bf15d_0[__Vtableidx1];
+        = Vtop_TLU__ConstPool__TABLE_h165401b8_0[__Vtableidx1];
     vlSelf->top_TLU__DOT__tlu_inst__DOT__trade_sma_inst__DOT__confluence_rising 
         = ((~ (IData)(vlSelf->rst)) & (2U <= (3U & 
                                               (((((((0xffU 

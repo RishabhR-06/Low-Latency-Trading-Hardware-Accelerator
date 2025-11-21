@@ -27,7 +27,7 @@ module trade_SMA #(
     logic buy_signal_next, sell_signal_next;
 
     // getting previous SMA values for trend detection
-    // can be made more efficient with shift registers if needed
+    // can be made to look more clean with registers if needed
     // but FPGA compiler should be able to optimise this
 
     always_ff @( posedge clk ) begin
@@ -55,19 +55,16 @@ module trade_SMA #(
         rising_20  = data_20  > prev_20;
         rising_50  = data_50  > prev_50;
         rising_100 = data_100 > prev_100;
-        rising_200 = data_200 > prev_200;        
-       
-    end
+        rising_200 = data_200 > prev_200; 
 
-    always_comb begin
         falling_5   = data_5   < prev_5; 
         falling_10  = data_10  < prev_10;
         falling_20  = data_20  < prev_20;
         falling_50  = data_50  < prev_50;
         falling_100 = data_100 < prev_100;
-        falling_200 = data_200 < prev_200;  
-        
-    end   
+        falling_200 = data_200 < prev_200;        
+       
+    end
 
     //implementing scoring system for trend strength
     assign up_score   = (data_5 - data_20) + (data_10 - data_50);
@@ -111,3 +108,4 @@ module trade_SMA #(
 
     
 endmodule
+

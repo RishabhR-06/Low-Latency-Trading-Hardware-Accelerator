@@ -17,7 +17,7 @@ module trade_MEAN #(
 
 
 
-
+    // Mean reversion logic
     assign trend = short_sma>long_sma;
     assign mid_range = (short_sma + long_sma) >> 1;
     assign upper_bound = mid_range + threshold;
@@ -26,6 +26,8 @@ module trade_MEAN #(
     assign buy_signal_next  = trend  && (current_data < lower_bound);
     assign sell_signal_next = !trend && (current_data > upper_bound);
 
+
+    // again synchronising signals for TLU
     always_ff @( posedge clk ) begin 
         if (rst) begin
             buy_signal  <= 1'b0;

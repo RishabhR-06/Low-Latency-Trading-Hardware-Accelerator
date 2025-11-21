@@ -27,7 +27,7 @@ module fixed_sma #(
     // considered using only powers of 2 for window size to use bit shifting and save resources
     // but decided against it for flexibility and strategy purposes
 
-    assign avg = sum / window;
+    assign avg = sum / window; // needs to be pipelined for higher frequencies as division is latency heavy
     assign data_out = avg[7:0];
     
 endmodule

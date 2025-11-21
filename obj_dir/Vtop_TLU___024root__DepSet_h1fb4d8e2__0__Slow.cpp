@@ -6,8 +6,8 @@
 
 #include "Vtop_TLU___024root.h"
 
-extern const VlUnpacked<CData/*2:0*/, 64> Vtop_TLU__ConstPool__TABLE_h9bd5dc9b_0;
-extern const VlUnpacked<CData/*2:0*/, 64> Vtop_TLU__ConstPool__TABLE_h4f3bf15d_0;
+extern const VlUnpacked<CData/*2:0*/, 64> Vtop_TLU__ConstPool__TABLE_h0784e10c_0;
+extern const VlUnpacked<CData/*2:0*/, 64> Vtop_TLU__ConstPool__TABLE_h165401b8_0;
 
 VL_ATTR_COLD void Vtop_TLU___024root___settle__TOP__0(Vtop_TLU___024root* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused
@@ -26,9 +26,9 @@ VL_ATTR_COLD void Vtop_TLU___024root___settle__TOP__0(Vtop_TLU___024root* vlSelf
                                                << 1U) 
                                               | (IData)(vlSelf->top_TLU__DOT__tlu_inst__DOT__buy_mean))))));
     vlSelf->top_TLU__DOT__tlu_inst__DOT__buy_score 
-        = Vtop_TLU__ConstPool__TABLE_h9bd5dc9b_0[__Vtableidx1];
+        = Vtop_TLU__ConstPool__TABLE_h0784e10c_0[__Vtableidx1];
     vlSelf->top_TLU__DOT__tlu_inst__DOT__sell_score 
-        = Vtop_TLU__ConstPool__TABLE_h4f3bf15d_0[__Vtableidx1];
+        = Vtop_TLU__ConstPool__TABLE_h165401b8_0[__Vtableidx1];
     vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__sec_mom_mine__DOT__data_in_sq 
         = (0xffffU & ((IData)(vlSelf->top_TLU__DOT__data_in) 
                       * (IData)(vlSelf->top_TLU__DOT__data_in)));

@@ -4,7 +4,9 @@ module top_TLU(
     output logic buy_signal,
     output logic sell_signal
 );
-
+    //inputting simulation data from ROM for testing
+    // This style mimics how a cpu would read data from memory
+    // In practice, data_in would come from an ADC or data feed interface
     logic[7:0] data_in;
     logic[15:0] rom_addr;
 
@@ -26,7 +28,7 @@ module top_TLU(
         end
     end
 
-    
+
 
     TLU tlu_inst (
         .clk(clk),
