@@ -4,11 +4,17 @@ import yfinance as yf
 import subprocess
 import os
 
+# access memory folder
+
+mem_folder = "memory"
+
+
+
 # Parameters
 symbol = input("Enter stock you want ")           # Stock symbol (e.g. AAPL, TSLA, NVDA)
 period = "7d"             # Time period: "1mo", "3mo", "1y", etc.
 interval = "1m"            # Interval: "1h", "1d", "5m", etc.
-output_file = "stock.mem"  # Output memory file name
+output_file = os.path.join(mem_folder, "stock.mem") # Output memory file name
 
 
 # get stock data
@@ -16,8 +22,12 @@ data = yf.download(symbol, period=period, interval=interval, progress=False)
 prices = data["Close"].values
 
 
+
+
 # Normalise to 0–255 (8-bit range)
 min_val, max_val = np.min(prices), np.max(prices)
+print(f"Real min price: {min_val}, Real max price: {max_val}")
+
 normalized = ((prices - min_val) / (max_val - min_val) * 255).astype(int)
 
 # Write to memory file
@@ -51,26 +61,28 @@ plt.show()
 module = "top_TLU"  # top-level module name
 subprocess.run([
     "wsl", "verilator", "--cc", f"{module}.sv",
-    "--exe", f"{module}_tb.cpp"
-    ], check=True)
+    "--exe", f"../tb/{module}_tb.cpp",
+    ], check=True, cwd= "rtl")
 
 # make file
 
 subprocess.run([
     "wsl", "make", "-j","-C", "obj_dir/", "-f", f"V{module}.mk",f"V{module}"
-    ], check=True)
+    ], check=True, cwd = "rtl")
 
 # execute the compiled test bench
-subprocess.run(["wsl",f"./obj_dir/V{module}"], check=True)
+subprocess.run(["wsl",f"./obj_dir/V{module}"
+                ], check=True, cwd = "rtl")
 
 
 
 # Parameters
 
-stock_file = "stock.mem"
-buy_file = "buy_signal.mem"
-sell_file = "sell_signal.mem"
-            # Stock symbol (must match stock.mem)
+stock_file = os.path.join(mem_folder, "stock.mem")
+buy_file = os.path.join(mem_folder, "buy_signal.mem")
+sell_file = os.path.join(mem_folder, "sell_signal.mem")
+
+# Stock symbol (must match stock.mem)
 units_per_trade = 1    # units bought/sold per signal
 max_units_budget = 1     # maximum units you can hold at any time
 
@@ -88,12 +100,8 @@ def load_mem_file(filename):
     return arr
 
 
-# Fetch original stock data for min/max
 
-data = yf.download(symbol, period="7d", interval="1m", progress=False)
-real_min_price = np.min(data["Close"].values)
-real_max_price = np.max(data["Close"].values)
-print(f"Real min price: {real_min_price}, Real max price: {real_max_price}")
+
 
 
 # Load data from memory files
@@ -103,7 +111,7 @@ buy_signals = load_mem_file(buy_file)
 sell_signals = load_mem_file(sell_file)
 
 # Convert 8-bit 0-255 to actual stock price
-prices = real_min_price + (prices_raw / 255.0) * (real_max_price - real_min_price)
+prices = min_val + (prices_raw / 255.0) * (max_val - min_val)
 
 # Ensure arrays are same length
 min_len = min(len(prices), len(buy_signals), len(sell_signals))
