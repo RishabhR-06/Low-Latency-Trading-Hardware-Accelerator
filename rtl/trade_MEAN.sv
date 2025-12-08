@@ -3,11 +3,13 @@ module trade_MEAN #(
 )(
     input logic clk,
     input logic rst,
+    input logic data_valid_pre,
     input logic[7:0] short_sma,
     input logic[7:0] long_sma,
     input logic[7:0] current_data,
     output logic buy_signal,
-    output logic sell_signal
+    output logic sell_signal,
+    output logic data_valid_mean
 );
 
     logic trend;
@@ -36,6 +38,7 @@ module trade_MEAN #(
         else begin
             buy_signal  <= buy_signal_next;
             sell_signal <= sell_signal_next;
+            data_valid_mean <= data_valid_pre;
         end
     end
 

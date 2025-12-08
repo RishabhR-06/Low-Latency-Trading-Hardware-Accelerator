@@ -4,8 +4,10 @@ module sec_mom #(
 (
     input logic [7:0] data_in,
     input logic clk,
+    input logic enable,
     input logic rst,
-    output logic [15:0] data_out
+    output logic [15:0] data_out,
+    output logic data_valid
 );
 
     logic [15:0] Q[window-1:0];
@@ -18,11 +20,14 @@ module sec_mom #(
         if (rst) begin
             sqr_sum <= 32'b0;
             Q <= '{default:16'b0};
-        end else begin
+            data_valid <= 1'b0;
+        end else if (enable) begin
             sqr_sum <= sqr_sum + {{(32-16){1'b0}},data_in_sq} - {{(32-16){1'b0}},Q[window-1]};
             Q[window-1:1] <= Q[window-2:0];
             Q[0] <= data_in_sq;
-        end         
+        end else begin
+            data_valid <= 1'b0;
+        end    
     end
     
     assign avg = sqr_sum / window;

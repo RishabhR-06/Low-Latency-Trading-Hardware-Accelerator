@@ -3,11 +3,13 @@ module trade_Z #(
 )(
     input logic clk,
     input logic rst,
+    input logic data_valid_pre,
     input logic[7:0] N_mean,
     input logic[7:0] current_data,
     input logic[15:0] N_sqr_mean,
     output logic buy_signal,
-    output logic sell_signal
+    output logic sell_signal,
+    output logic data_valid_z
 );
 
     logic[15:0] variance;
@@ -48,6 +50,7 @@ module trade_Z #(
         else begin
             buy_signal  <= buy_signal_next;
             sell_signal <= sell_signal_next;
+            data_valid_z <= data_valid_pre;
         end
     end
 

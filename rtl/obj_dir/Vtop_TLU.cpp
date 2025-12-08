@@ -14,6 +14,7 @@ Vtop_TLU::Vtop_TLU(VerilatedContext* _vcontextp__, const char* _vcname__)
     , rst{vlSymsp->TOP.rst}
     , buy_signal{vlSymsp->TOP.buy_signal}
     , sell_signal{vlSymsp->TOP.sell_signal}
+    , data_valid{vlSymsp->TOP.data_valid}
     , rootp{&(vlSymsp->TOP)}
 {
     // Register model with the context

@@ -5,6 +5,7 @@ module trade_SMA #(
 )(
     input logic clk,
     input logic rst,
+    input logic data_valid_pre,
     input logic[7:0] data_5,
     input logic[7:0] data_10,
     input logic[7:0] data_20,
@@ -12,7 +13,8 @@ module trade_SMA #(
     input logic[7:0] data_100,
     input logic[7:0] data_200,
     output logic buy_signal,
-    output logic sell_signal
+    output logic sell_signal,
+    output logic data_valid_sma
 );
 
 
@@ -100,6 +102,7 @@ module trade_SMA #(
         else begin
             buy_signal  <= buy_signal_next;
             sell_signal <= sell_signal_next;
+            data_valid_sma <= data_valid_pre;
         end
     end
     
