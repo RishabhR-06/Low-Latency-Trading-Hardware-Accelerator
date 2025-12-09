@@ -22,7 +22,9 @@ data = yf.download(symbol, period=period, interval=interval, progress=False)
 prices = data["Close"].values
 
 
-
+# want to change this to do more bits later 32 seems good a range from 0-4 billion
+# but for now 8 bits is easier to handle in verilog
+# We are also using fixed point here as our hardware can't handle floating point
 
 # Normalise to 0–255 (8-bit range)
 min_val, max_val = np.min(prices), np.max(prices)
