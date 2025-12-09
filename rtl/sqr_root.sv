@@ -1,5 +1,5 @@
 module sqr_root #(
-    parameter[5:0] size = 5'd16,
+    parameter[5:0] size = 5'd16
 ) (
     input logic clk,
     input logic rst,

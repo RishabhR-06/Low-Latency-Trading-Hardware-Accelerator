@@ -26,7 +26,7 @@ module trade_Z #(
     // Z-score calculation
     assign variance = N_sqr_mean - (N_mean * N_mean);
     // using inbuilt func for nows
-    assign temp = int'($sqrt(variance));
+    assign temp = variance;//int'($sqrt(variance));
     assign stddev =  temp[7:0];
     // will create a square root hardware block and maybe division soon
 
