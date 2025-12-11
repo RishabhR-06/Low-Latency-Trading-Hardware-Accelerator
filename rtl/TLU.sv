@@ -95,7 +95,7 @@ module TLU (
                     +(buy_z? 3'd2 : 3'd0); //1
 
         sell_score = (sell_mean? 3'd1 : 3'd0) 
-                    + (sell_sma? 3'd2 : 3'd0) 
+                    + (sell_sma? 3'd1 : 3'd0) 
                     +(sell_z? 3'd1 : 3'd0);
     end
 
