@@ -26,7 +26,8 @@ class Vtop_TLU___024root final : public VerilatedModule {
     CData/*0:0*/ top_TLU__DOT__tlu_inst__DOT__buy_z;
     CData/*0:0*/ top_TLU__DOT__tlu_inst__DOT__sell_z;
     CData/*0:0*/ top_TLU__DOT__tlu_inst__DOT__data_valid;
-    CData/*0:0*/ top_TLU__DOT__tlu_inst__DOT__data_valid_z;
+    CData/*0:0*/ top_TLU__DOT__tlu_inst__DOT__data_valid_sma;
+    CData/*0:0*/ top_TLU__DOT__tlu_inst__DOT__data_valid_mean;
     CData/*2:0*/ top_TLU__DOT__tlu_inst__DOT__buy_score;
     CData/*2:0*/ top_TLU__DOT__tlu_inst__DOT__sell_score;
     CData/*0:0*/ top_TLU__DOT__tlu_inst__DOT__trade_sma_inst__DOT__confluence_rising;
@@ -45,6 +46,7 @@ class Vtop_TLU___024root final : public VerilatedModule {
     SData/*15:0*/ top_TLU__DOT__tlu_inst__DOT__trade_sma_inst__DOT__prev_200;
     SData/*15:0*/ top_TLU__DOT__tlu_inst__DOT__trade_mean_inst__DOT__mid_range;
     IData/*31:0*/ top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__sec_mom_mine__DOT__data_in_sq;
+    IData/*31:0*/ top_TLU__DOT__tlu_inst__DOT__trade_z_inst__DOT__temp;
     IData/*31:0*/ top_TLU__DOT__tlu_inst__DOT__trade_z_inst__DOT__z_score;
     QData/*63:0*/ top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__sec_mom_mine__DOT__sqr_sum;
     QData/*63:0*/ top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_5__DOT__sum;
@@ -61,6 +63,7 @@ class Vtop_TLU___024root final : public VerilatedModule {
     VlUnpacked<SData/*15:0*/, 50> top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_50__DOT__Q;
     VlUnpacked<SData/*15:0*/, 100> top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_100__DOT__Q;
     VlUnpacked<SData/*15:0*/, 200> top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_200__DOT__Q;
+    VlUnpacked<IData/*31:0*/, 1048576> top_TLU__DOT__tlu_inst__DOT__trade_z_inst__DOT__sqrt_rom__DOT__rom_array;
 
     // INTERNAL VARIABLES
     Vtop_TLU__Syms* const vlSymsp;

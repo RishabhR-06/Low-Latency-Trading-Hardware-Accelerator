@@ -6,6 +6,35 @@
 
 #include "Vtop_TLU___024root.h"
 
+VL_ATTR_COLD void Vtop_TLU___024root___initial__TOP__0(Vtop_TLU___024root* vlSelf) {
+    if (false && vlSelf) {}  // Prevent unused
+    Vtop_TLU__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
+    VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop_TLU___024root___initial__TOP__0\n"); );
+    // Init
+    VlWide<6>/*191:0*/ __Vtemp_h8002863c__0;
+    VlWide<5>/*159:0*/ __Vtemp_h5d05b0f9__0;
+    // Body
+    VL_WRITEF("loading.rom\n");
+    __Vtemp_h8002863c__0[0U] = 0x2e6d656dU;
+    __Vtemp_h8002863c__0[1U] = 0x5f726f6dU;
+    __Vtemp_h8002863c__0[2U] = 0x73717274U;
+    __Vtemp_h8002863c__0[3U] = 0x6f72792fU;
+    __Vtemp_h8002863c__0[4U] = 0x2f6d656dU;
+    __Vtemp_h8002863c__0[5U] = 0x2e2eU;
+    VL_READMEM_N(true, 32, 1048576, 0, VL_CVT_PACK_STR_NW(6, __Vtemp_h8002863c__0)
+                 ,  &(vlSelf->top_TLU__DOT__tlu_inst__DOT__trade_z_inst__DOT__sqrt_rom__DOT__rom_array)
+                 , 0, ~0ULL);
+    VL_WRITEF("loading.rom\n");
+    __Vtemp_h5d05b0f9__0[0U] = 0x2e6d656dU;
+    __Vtemp_h5d05b0f9__0[1U] = 0x746f636bU;
+    __Vtemp_h5d05b0f9__0[2U] = 0x72792f73U;
+    __Vtemp_h5d05b0f9__0[3U] = 0x6d656d6fU;
+    __Vtemp_h5d05b0f9__0[4U] = 0x2e2e2fU;
+    VL_READMEM_N(true, 16, 65536, 0, VL_CVT_PACK_STR_NW(5, __Vtemp_h5d05b0f9__0)
+                 ,  &(vlSelf->top_TLU__DOT__my_rom__DOT__rom_array)
+                 , 0, ~0ULL);
+}
+
 extern const VlUnpacked<CData/*2:0*/, 64> Vtop_TLU__ConstPool__TABLE_h0784e10c_0;
 extern const VlUnpacked<CData/*2:0*/, 64> Vtop_TLU__ConstPool__TABLE_he2537b27_0;
 
@@ -39,19 +68,7 @@ VL_ATTR_COLD void Vtop_TLU___024root___settle__TOP__0(Vtop_TLU___024root* vlSelf
                        + (IData)(VL_DIV_QQQ(64, vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_50__DOT__sum, 0x32ULL))) 
                       >> 1U));
     vlSelf->top_TLU__DOT__tlu_inst__DOT__trade_z_inst__DOT__z_score 
-        = ((0U != (0xffffU & VL_RTOIROUND_I_D(sqrt(
-                                                   VL_ITOR_D_I(32, 
-                                                               (((IData)(
-                                                                         VL_DIV_QQQ(64, vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__sec_mom_mine__DOT__sqr_sum, 0x14ULL)) 
-                                                                 - 
-                                                                 ((0xffffU 
-                                                                   & (IData)(
-                                                                             VL_DIV_QQQ(64, vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_20__DOT__sum, 0x14ULL))) 
-                                                                  * 
-                                                                  (0xffffU 
-                                                                   & (IData)(
-                                                                             VL_DIV_QQQ(64, vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_20__DOT__sum, 0x14ULL))))) 
-                                                                >> 0xcU))))))
+        = ((0U != (0xffffU & vlSelf->top_TLU__DOT__tlu_inst__DOT__trade_z_inst__DOT__temp))
             ? VL_DIV_III(32, (0x3fffc0U & ((((IData)(vlSelf->top_TLU__DOT__data_in) 
                                              > (0xffffU 
                                                 & (IData)(
@@ -63,39 +80,8 @@ VL_ATTR_COLD void Vtop_TLU___024root___settle__TOP__0(Vtop_TLU___024root* vlSelf
                                                         VL_DIV_QQQ(64, vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_20__DOT__sum, 0x14ULL)) 
                                                 - (IData)(vlSelf->top_TLU__DOT__data_in))) 
                                            << 6U)), 
-                         (0xffffU & VL_RTOIROUND_I_D(
-                                                     sqrt(
-                                                          VL_ITOR_D_I(32, 
-                                                                      (((IData)(
-                                                                                VL_DIV_QQQ(64, vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__sec_mom_mine__DOT__sqr_sum, 0x14ULL)) 
-                                                                        - 
-                                                                        ((0xffffU 
-                                                                          & (IData)(
-                                                                                VL_DIV_QQQ(64, vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_20__DOT__sum, 0x14ULL))) 
-                                                                         * 
-                                                                         (0xffffU 
-                                                                          & (IData)(
-                                                                                VL_DIV_QQQ(64, vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_20__DOT__sum, 0x14ULL))))) 
-                                                                       >> 0xcU))))))
+                         (0xffffU & vlSelf->top_TLU__DOT__tlu_inst__DOT__trade_z_inst__DOT__temp))
             : 0U);
-}
-
-VL_ATTR_COLD void Vtop_TLU___024root___initial__TOP__0(Vtop_TLU___024root* vlSelf) {
-    if (false && vlSelf) {}  // Prevent unused
-    Vtop_TLU__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
-    VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop_TLU___024root___initial__TOP__0\n"); );
-    // Init
-    VlWide<5>/*159:0*/ __Vtemp_h5d05b0f9__0;
-    // Body
-    VL_WRITEF("loading.rom\n");
-    __Vtemp_h5d05b0f9__0[0U] = 0x2e6d656dU;
-    __Vtemp_h5d05b0f9__0[1U] = 0x746f636bU;
-    __Vtemp_h5d05b0f9__0[2U] = 0x72792f73U;
-    __Vtemp_h5d05b0f9__0[3U] = 0x6d656d6fU;
-    __Vtemp_h5d05b0f9__0[4U] = 0x2e2e2fU;
-    VL_READMEM_N(true, 16, 65536, 0, VL_CVT_PACK_STR_NW(5, __Vtemp_h5d05b0f9__0)
-                 ,  &(vlSelf->top_TLU__DOT__my_rom__DOT__rom_array)
-                 , 0, ~0ULL);
 }
 
 VL_ATTR_COLD void Vtop_TLU___024root___eval_initial(Vtop_TLU___024root* vlSelf) {
@@ -146,7 +132,8 @@ VL_ATTR_COLD void Vtop_TLU___024root___ctor_var_reset(Vtop_TLU___024root* vlSelf
     vlSelf->top_TLU__DOT__tlu_inst__DOT__buy_z = VL_RAND_RESET_I(1);
     vlSelf->top_TLU__DOT__tlu_inst__DOT__sell_z = VL_RAND_RESET_I(1);
     vlSelf->top_TLU__DOT__tlu_inst__DOT__data_valid = VL_RAND_RESET_I(1);
-    vlSelf->top_TLU__DOT__tlu_inst__DOT__data_valid_z = VL_RAND_RESET_I(1);
+    vlSelf->top_TLU__DOT__tlu_inst__DOT__data_valid_sma = VL_RAND_RESET_I(1);
+    vlSelf->top_TLU__DOT__tlu_inst__DOT__data_valid_mean = VL_RAND_RESET_I(1);
     vlSelf->top_TLU__DOT__tlu_inst__DOT__buy_score = VL_RAND_RESET_I(3);
     vlSelf->top_TLU__DOT__tlu_inst__DOT__sell_score = VL_RAND_RESET_I(3);
     for (int __Vi0=0; __Vi0<20; ++__Vi0) {
@@ -188,5 +175,9 @@ VL_ATTR_COLD void Vtop_TLU___024root___ctor_var_reset(Vtop_TLU___024root* vlSelf
     vlSelf->top_TLU__DOT__tlu_inst__DOT__trade_sma_inst__DOT__confluence_falling = VL_RAND_RESET_I(1);
     vlSelf->top_TLU__DOT__tlu_inst__DOT__trade_mean_inst__DOT__trend = VL_RAND_RESET_I(1);
     vlSelf->top_TLU__DOT__tlu_inst__DOT__trade_mean_inst__DOT__mid_range = VL_RAND_RESET_I(16);
+    vlSelf->top_TLU__DOT__tlu_inst__DOT__trade_z_inst__DOT__temp = VL_RAND_RESET_I(32);
     vlSelf->top_TLU__DOT__tlu_inst__DOT__trade_z_inst__DOT__z_score = VL_RAND_RESET_I(32);
+    for (int __Vi0=0; __Vi0<1048576; ++__Vi0) {
+        vlSelf->top_TLU__DOT__tlu_inst__DOT__trade_z_inst__DOT__sqrt_rom__DOT__rom_array[__Vi0] = VL_RAND_RESET_I(32);
+    }
 }

@@ -22,6 +22,9 @@ module trade_Z #(
     logic[data_width*2-1:0] delta_fixed;
     logic[data_width*2-1:0] z_score;
     logic buy_signal_next, sell_signal_next;
+    logic data_valid_next;
+    logic[data_width*2-1:0] int_sqr;
+
 
     parameter fractional_bits = data_width - integer_bits;
 
@@ -29,7 +32,20 @@ module trade_Z #(
     // Z-score calculation
     assign variance = N_sqr_mean - (N_mean * N_mean);
     // using inbuilt func for nows
-    assign temp = int'($sqrt(variance>> fractional_bits*2)); // right shift to adjust for fixed point scaling
+    // right shift to adjust for fixed point scaling
+
+    assign int_sqr = (variance >> fractional_bits*2);
+
+    rom #(
+        .ADDRESS_WIDTH(20),
+        .DATA_WIDTH(data_width*2),
+        .mem_file("../memory/sqrt_rom.mem")
+    ) sqrt_rom (
+        .clk(clk),
+        .addr(int_sqr[19:0]),
+        .dout(temp)
+    );
+
     assign stddev =  temp[data_width-1:0];
     // will create a square root hardware block and maybe division soon
 
@@ -56,11 +72,14 @@ module trade_Z #(
         if (rst) begin
             buy_signal  <= 1'b0;
             sell_signal <= 1'b0;
+            data_valid_next <= 1'b0;
+            data_valid_z    <= 1'b0;
         end
         else begin
+            data_valid_next <= data_valid_pre;
+            data_valid_z <= data_valid_next;
             buy_signal  <= buy_signal_next;
             sell_signal <= sell_signal_next;
-            data_valid_z <= data_valid_pre;
         end
     end
 

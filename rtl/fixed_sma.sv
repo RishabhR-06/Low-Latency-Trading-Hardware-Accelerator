@@ -20,13 +20,15 @@ module fixed_sma #(
             sum <= {{data_width*4{1'b0}}};
             Q <= '{default: 0};
             data_valid <= 1'b0;
-        end else if (enable) begin
+        end 
+        else if (enable) begin
             // Uses a sliding window to maintain the sum of the last 'window' inputs saves resources
             sum <= sum + {{(data_width*3){1'b0}},data_in} - {{(data_width*3){1'b0}},Q[window-1]}; 
             Q[window-1:1] <= Q[window-2:0];
             Q[0] <= data_in; 
             data_valid <= 1'b1;
-        end else begin
+        end 
+        else begin
             data_valid <= 1'b0;
         end         
     end

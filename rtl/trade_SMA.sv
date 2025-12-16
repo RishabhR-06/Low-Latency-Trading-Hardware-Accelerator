@@ -99,6 +99,7 @@ module trade_SMA #(
         if (rst) begin
             buy_signal  <= 1'b0;
             sell_signal <= 1'b0;
+            data_valid_sma <= 1'b0;
         end
         else begin
             buy_signal  <= buy_signal_next;

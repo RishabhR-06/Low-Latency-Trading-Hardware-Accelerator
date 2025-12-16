@@ -108,6 +108,17 @@ module TLU #(
                     +(sell_z? 3'd1 : 3'd0);
     end
 
+
+
+    // i blieve what going wrong is that currently
+    // data_valid_z is 2 cycles delayed compared to data_valid_sma and data_valid_mean
+    // so when we AND them together, data_valid_end never goes high
+    // solution is to synchronise the other signals to data_valid_z
+    // but for now just ANDing sma and mean valid signals
+    // PLAN: add registers to delay data_valid_sma and data_valid_mean by 2 cycles each
+    // OR delay just the buy and sell signals from sma and mean modules by 1 more cycle each
+
+
     // generating final buy/sell signals based on scores
     always_ff @(posedge clk) begin
         if (rst) begin
@@ -116,7 +127,7 @@ module TLU #(
         end else begin
             buy_signal  <= (buy_score  >= 2);
             sell_signal <= (sell_score >= 2);
-            data_valid_end <= data_valid_z;
+            data_valid_end <= data_valid_mean && data_valid_sma ;//&&  data_valid_z;
         end
     end
     

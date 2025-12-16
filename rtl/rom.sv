@@ -1,6 +1,7 @@
 module rom #(
     parameter ADDRESS_WIDTH = 16,
-    parameter DATA_WIDTH = 8
+    parameter DATA_WIDTH = 8,
+    parameter mem_file = "../memory/stock.mem"
 )(
     input logic clk,
     input logic[ADDRESS_WIDTH-1:0] addr,
@@ -10,7 +11,7 @@ module rom #(
     
     initial begin
         $display("loading.rom");
-        $readmemh("../memory/stock.mem", rom_array);
+        $readmemh(mem_file, rom_array);
     end
 
     always_ff @(posedge clk) begin

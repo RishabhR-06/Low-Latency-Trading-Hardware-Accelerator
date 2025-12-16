@@ -43,7 +43,7 @@ module Preprocessor #(
         .enable(enable),
         .rst(rst),
         .data_out(data_5),
-        .data_valid(data_valid) // unused output
+        .data_valid(data_valid)
     );
 
     fixed_sma #(
