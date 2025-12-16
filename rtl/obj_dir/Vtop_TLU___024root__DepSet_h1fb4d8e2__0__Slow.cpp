@@ -46,14 +46,14 @@ VL_ATTR_COLD void Vtop_TLU___024root___settle__TOP__0(Vtop_TLU___024root* vlSelf
     CData/*5:0*/ __Vtableidx1;
     // Body
     __Vtableidx1 = (((IData)(vlSelf->top_TLU__DOT__tlu_inst__DOT__sell_z) 
-                     << 5U) | (((IData)(vlSelf->top_TLU__DOT__tlu_inst__DOT__sell_sma) 
-                                << 4U) | (((IData)(vlSelf->top_TLU__DOT__tlu_inst__DOT__sell_mean) 
+                     << 5U) | (((IData)(vlSelf->top_TLU__DOT__tlu_inst__DOT__sell_sma_a) 
+                                << 4U) | (((IData)(vlSelf->top_TLU__DOT__tlu_inst__DOT__sell_mean_a) 
                                            << 3U) | 
                                           (((IData)(vlSelf->top_TLU__DOT__tlu_inst__DOT__buy_z) 
                                             << 2U) 
-                                           | (((IData)(vlSelf->top_TLU__DOT__tlu_inst__DOT__buy_sma) 
+                                           | (((IData)(vlSelf->top_TLU__DOT__tlu_inst__DOT__buy_sma_a) 
                                                << 1U) 
-                                              | (IData)(vlSelf->top_TLU__DOT__tlu_inst__DOT__buy_mean))))));
+                                              | (IData)(vlSelf->top_TLU__DOT__tlu_inst__DOT__buy_mean_a))))));
     vlSelf->top_TLU__DOT__tlu_inst__DOT__buy_score 
         = Vtop_TLU__ConstPool__TABLE_h0784e10c_0[__Vtableidx1];
     vlSelf->top_TLU__DOT__tlu_inst__DOT__sell_score 
@@ -125,15 +125,22 @@ VL_ATTR_COLD void Vtop_TLU___024root___ctor_var_reset(Vtop_TLU___024root* vlSelf
     for (int __Vi0=0; __Vi0<65536; ++__Vi0) {
         vlSelf->top_TLU__DOT__my_rom__DOT__rom_array[__Vi0] = VL_RAND_RESET_I(16);
     }
-    vlSelf->top_TLU__DOT__tlu_inst__DOT__buy_sma = VL_RAND_RESET_I(1);
-    vlSelf->top_TLU__DOT__tlu_inst__DOT__sell_sma = VL_RAND_RESET_I(1);
-    vlSelf->top_TLU__DOT__tlu_inst__DOT__buy_mean = VL_RAND_RESET_I(1);
-    vlSelf->top_TLU__DOT__tlu_inst__DOT__sell_mean = VL_RAND_RESET_I(1);
     vlSelf->top_TLU__DOT__tlu_inst__DOT__buy_z = VL_RAND_RESET_I(1);
     vlSelf->top_TLU__DOT__tlu_inst__DOT__sell_z = VL_RAND_RESET_I(1);
     vlSelf->top_TLU__DOT__tlu_inst__DOT__data_valid = VL_RAND_RESET_I(1);
-    vlSelf->top_TLU__DOT__tlu_inst__DOT__data_valid_sma = VL_RAND_RESET_I(1);
-    vlSelf->top_TLU__DOT__tlu_inst__DOT__data_valid_mean = VL_RAND_RESET_I(1);
+    vlSelf->top_TLU__DOT__tlu_inst__DOT__data_valid_sma_b = VL_RAND_RESET_I(1);
+    vlSelf->top_TLU__DOT__tlu_inst__DOT__data_valid_mean_b = VL_RAND_RESET_I(1);
+    vlSelf->top_TLU__DOT__tlu_inst__DOT__data_valid_sma_a = VL_RAND_RESET_I(1);
+    vlSelf->top_TLU__DOT__tlu_inst__DOT__data_valid_mean_a = VL_RAND_RESET_I(1);
+    vlSelf->top_TLU__DOT__tlu_inst__DOT__data_valid_z = VL_RAND_RESET_I(1);
+    vlSelf->top_TLU__DOT__tlu_inst__DOT__buy_sma_a = VL_RAND_RESET_I(1);
+    vlSelf->top_TLU__DOT__tlu_inst__DOT__sell_sma_a = VL_RAND_RESET_I(1);
+    vlSelf->top_TLU__DOT__tlu_inst__DOT__buy_sma_b = VL_RAND_RESET_I(1);
+    vlSelf->top_TLU__DOT__tlu_inst__DOT__sell_sma_b = VL_RAND_RESET_I(1);
+    vlSelf->top_TLU__DOT__tlu_inst__DOT__buy_mean_a = VL_RAND_RESET_I(1);
+    vlSelf->top_TLU__DOT__tlu_inst__DOT__sell_mean_a = VL_RAND_RESET_I(1);
+    vlSelf->top_TLU__DOT__tlu_inst__DOT__buy_mean_b = VL_RAND_RESET_I(1);
+    vlSelf->top_TLU__DOT__tlu_inst__DOT__sell_mean_b = VL_RAND_RESET_I(1);
     vlSelf->top_TLU__DOT__tlu_inst__DOT__buy_score = VL_RAND_RESET_I(3);
     vlSelf->top_TLU__DOT__tlu_inst__DOT__sell_score = VL_RAND_RESET_I(3);
     for (int __Vi0=0; __Vi0<20; ++__Vi0) {
@@ -177,6 +184,7 @@ VL_ATTR_COLD void Vtop_TLU___024root___ctor_var_reset(Vtop_TLU___024root* vlSelf
     vlSelf->top_TLU__DOT__tlu_inst__DOT__trade_mean_inst__DOT__mid_range = VL_RAND_RESET_I(16);
     vlSelf->top_TLU__DOT__tlu_inst__DOT__trade_z_inst__DOT__temp = VL_RAND_RESET_I(32);
     vlSelf->top_TLU__DOT__tlu_inst__DOT__trade_z_inst__DOT__z_score = VL_RAND_RESET_I(32);
+    vlSelf->top_TLU__DOT__tlu_inst__DOT__trade_z_inst__DOT__data_valid_next = VL_RAND_RESET_I(1);
     for (int __Vi0=0; __Vi0<1048576; ++__Vi0) {
         vlSelf->top_TLU__DOT__tlu_inst__DOT__trade_z_inst__DOT__sqrt_rom__DOT__rom_array[__Vi0] = VL_RAND_RESET_I(32);
     }

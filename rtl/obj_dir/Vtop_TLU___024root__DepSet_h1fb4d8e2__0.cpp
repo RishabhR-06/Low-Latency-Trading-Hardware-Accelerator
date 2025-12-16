@@ -481,20 +481,6 @@ VL_INLINE_OPT void Vtop_TLU___024root___sequent__TOP__0(Vtop_TLU___024root* vlSe
                            & (2U <= (IData)(vlSelf->top_TLU__DOT__tlu_inst__DOT__sell_score)));
     vlSelf->buy_signal = ((~ (IData)(vlSelf->rst)) 
                           & (2U <= (IData)(vlSelf->top_TLU__DOT__tlu_inst__DOT__buy_score)));
-    vlSelf->top_TLU__DOT__tlu_inst__DOT__sell_mean 
-        = ((~ (IData)(vlSelf->rst)) & ((~ (IData)(vlSelf->top_TLU__DOT__tlu_inst__DOT__trade_mean_inst__DOT__trend)) 
-                                       & ((IData)(vlSelf->top_TLU__DOT__data_in) 
-                                          > (0xffffU 
-                                             & ((IData)(5U) 
-                                                + (IData)(vlSelf->top_TLU__DOT__tlu_inst__DOT__trade_mean_inst__DOT__mid_range))))));
-    vlSelf->top_TLU__DOT__tlu_inst__DOT__buy_mean = 
-        ((~ (IData)(vlSelf->rst)) & ((IData)(vlSelf->top_TLU__DOT__tlu_inst__DOT__trade_mean_inst__DOT__trend) 
-                                     & ((IData)(vlSelf->top_TLU__DOT__data_in) 
-                                        < ((5U < (IData)(vlSelf->top_TLU__DOT__tlu_inst__DOT__trade_mean_inst__DOT__mid_range))
-                                            ? (0xffffU 
-                                               & ((IData)(vlSelf->top_TLU__DOT__tlu_inst__DOT__trade_mean_inst__DOT__mid_range) 
-                                                  - (IData)(5U)))
-                                            : 0U))));
     vlSelf->top_TLU__DOT__tlu_inst__DOT__sell_z = (
                                                    (~ (IData)(vlSelf->rst)) 
                                                    & ((0x100U 
@@ -512,46 +498,19 @@ VL_INLINE_OPT void Vtop_TLU___024root___sequent__TOP__0(Vtop_TLU___024root* vlSe
                                                         (0xffffU 
                                                          & (IData)(
                                                                    VL_DIV_QQQ(64, vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_20__DOT__sum, 0x14ULL))))));
+    vlSelf->top_TLU__DOT__tlu_inst__DOT__sell_mean_a 
+        = ((~ (IData)(vlSelf->rst)) & (IData)(vlSelf->top_TLU__DOT__tlu_inst__DOT__sell_mean_b));
+    vlSelf->top_TLU__DOT__tlu_inst__DOT__buy_mean_a 
+        = ((~ (IData)(vlSelf->rst)) & (IData)(vlSelf->top_TLU__DOT__tlu_inst__DOT__buy_mean_b));
     if ((1U & (~ (IData)(vlSelf->rst)))) {
-        vlSelf->data_valid = ((IData)(vlSelf->top_TLU__DOT__tlu_inst__DOT__data_valid_mean) 
-                              & (IData)(vlSelf->top_TLU__DOT__tlu_inst__DOT__data_valid_sma));
+        vlSelf->data_valid = (((IData)(vlSelf->top_TLU__DOT__tlu_inst__DOT__data_valid_mean_a) 
+                               & (IData)(vlSelf->top_TLU__DOT__tlu_inst__DOT__data_valid_sma_a)) 
+                              & (IData)(vlSelf->top_TLU__DOT__tlu_inst__DOT__data_valid_z));
     }
-    vlSelf->top_TLU__DOT__tlu_inst__DOT__sell_sma = 
-        ((~ (IData)(vlSelf->rst)) & ((0x1000U < (0x1ffffU 
-                                                 & (((0xffffU 
-                                                      & (IData)(
-                                                                VL_DIV_QQQ(64, vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_20__DOT__sum, 0x14ULL))) 
-                                                     - 
-                                                     (0xffffU 
-                                                      & (IData)(
-                                                                VL_DIV_QQQ(64, vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_5__DOT__sum, 5ULL)))) 
-                                                    + 
-                                                    ((0xffffU 
-                                                      & (IData)(
-                                                                VL_DIV_QQQ(64, vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_50__DOT__sum, 0x32ULL))) 
-                                                     - 
-                                                     (0xffffU 
-                                                      & (IData)(
-                                                                VL_DIV_QQQ(64, vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_10__DOT__sum, 0xaULL))))))) 
-                                     & (IData)(vlSelf->top_TLU__DOT__tlu_inst__DOT__trade_sma_inst__DOT__confluence_falling)));
-    vlSelf->top_TLU__DOT__tlu_inst__DOT__buy_sma = 
-        ((~ (IData)(vlSelf->rst)) & ((0x1000U < (0x1ffffU 
-                                                 & (((0xffffU 
-                                                      & (IData)(
-                                                                VL_DIV_QQQ(64, vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_5__DOT__sum, 5ULL))) 
-                                                     - 
-                                                     (0xffffU 
-                                                      & (IData)(
-                                                                VL_DIV_QQQ(64, vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_20__DOT__sum, 0x14ULL)))) 
-                                                    + 
-                                                    ((0xffffU 
-                                                      & (IData)(
-                                                                VL_DIV_QQQ(64, vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_10__DOT__sum, 0xaULL))) 
-                                                     - 
-                                                     (0xffffU 
-                                                      & (IData)(
-                                                                VL_DIV_QQQ(64, vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_50__DOT__sum, 0x32ULL))))))) 
-                                     & (IData)(vlSelf->top_TLU__DOT__tlu_inst__DOT__trade_sma_inst__DOT__confluence_rising)));
+    vlSelf->top_TLU__DOT__tlu_inst__DOT__sell_sma_a 
+        = ((~ (IData)(vlSelf->rst)) & (IData)(vlSelf->top_TLU__DOT__tlu_inst__DOT__sell_sma_b));
+    vlSelf->top_TLU__DOT__tlu_inst__DOT__buy_sma_a 
+        = ((~ (IData)(vlSelf->rst)) & (IData)(vlSelf->top_TLU__DOT__tlu_inst__DOT__buy_sma_b));
     if (vlSelf->rst) {
         __Vdly__top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_5__DOT__sum = 0ULL;
         __Vdlyvset__top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_5__DOT__Q__v0 = 1U;
@@ -2747,9 +2706,82 @@ VL_INLINE_OPT void Vtop_TLU___024root___sequent__TOP__0(Vtop_TLU___024root* vlSe
         vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_200__DOT__Q[0U] 
             = __Vdlyvval__top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_200__DOT__Q__v399;
     }
-    vlSelf->top_TLU__DOT__tlu_inst__DOT__data_valid_mean 
+    vlSelf->top_TLU__DOT__tlu_inst__DOT__sell_mean_b 
+        = ((~ (IData)(vlSelf->rst)) & ((~ (IData)(vlSelf->top_TLU__DOT__tlu_inst__DOT__trade_mean_inst__DOT__trend)) 
+                                       & ((IData)(vlSelf->top_TLU__DOT__data_in) 
+                                          > (0xffffU 
+                                             & ((IData)(5U) 
+                                                + (IData)(vlSelf->top_TLU__DOT__tlu_inst__DOT__trade_mean_inst__DOT__mid_range))))));
+    vlSelf->top_TLU__DOT__tlu_inst__DOT__buy_mean_b 
+        = ((~ (IData)(vlSelf->rst)) & ((IData)(vlSelf->top_TLU__DOT__tlu_inst__DOT__trade_mean_inst__DOT__trend) 
+                                       & ((IData)(vlSelf->top_TLU__DOT__data_in) 
+                                          < ((5U < (IData)(vlSelf->top_TLU__DOT__tlu_inst__DOT__trade_mean_inst__DOT__mid_range))
+                                              ? (0xffffU 
+                                                 & ((IData)(vlSelf->top_TLU__DOT__tlu_inst__DOT__trade_mean_inst__DOT__mid_range) 
+                                                    - (IData)(5U)))
+                                              : 0U))));
+    vlSelf->top_TLU__DOT__tlu_inst__DOT__data_valid_mean_a 
+        = ((~ (IData)(vlSelf->rst)) & (IData)(vlSelf->top_TLU__DOT__tlu_inst__DOT__data_valid_mean_b));
+    vlSelf->top_TLU__DOT__tlu_inst__DOT__data_valid_sma_a 
+        = ((~ (IData)(vlSelf->rst)) & (IData)(vlSelf->top_TLU__DOT__tlu_inst__DOT__data_valid_sma_b));
+    vlSelf->top_TLU__DOT__tlu_inst__DOT__data_valid_z 
+        = ((~ (IData)(vlSelf->rst)) & (IData)(vlSelf->top_TLU__DOT__tlu_inst__DOT__trade_z_inst__DOT__data_valid_next));
+    vlSelf->top_TLU__DOT__tlu_inst__DOT__sell_sma_b 
+        = ((~ (IData)(vlSelf->rst)) & ((0x1000U < (0x1ffffU 
+                                                   & (((0xffffU 
+                                                        & (IData)(
+                                                                  VL_DIV_QQQ(64, vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_20__DOT__sum, 0x14ULL))) 
+                                                       - 
+                                                       (0xffffU 
+                                                        & (IData)(
+                                                                  VL_DIV_QQQ(64, vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_5__DOT__sum, 5ULL)))) 
+                                                      + 
+                                                      ((0xffffU 
+                                                        & (IData)(
+                                                                  VL_DIV_QQQ(64, vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_50__DOT__sum, 0x32ULL))) 
+                                                       - 
+                                                       (0xffffU 
+                                                        & (IData)(
+                                                                  VL_DIV_QQQ(64, vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_10__DOT__sum, 0xaULL))))))) 
+                                       & (IData)(vlSelf->top_TLU__DOT__tlu_inst__DOT__trade_sma_inst__DOT__confluence_falling)));
+    __Vtableidx1 = (((IData)(vlSelf->top_TLU__DOT__tlu_inst__DOT__sell_z) 
+                     << 5U) | (((IData)(vlSelf->top_TLU__DOT__tlu_inst__DOT__sell_sma_a) 
+                                << 4U) | (((IData)(vlSelf->top_TLU__DOT__tlu_inst__DOT__sell_mean_a) 
+                                           << 3U) | 
+                                          (((IData)(vlSelf->top_TLU__DOT__tlu_inst__DOT__buy_z) 
+                                            << 2U) 
+                                           | (((IData)(vlSelf->top_TLU__DOT__tlu_inst__DOT__buy_sma_a) 
+                                               << 1U) 
+                                              | (IData)(vlSelf->top_TLU__DOT__tlu_inst__DOT__buy_mean_a))))));
+    vlSelf->top_TLU__DOT__tlu_inst__DOT__buy_score 
+        = Vtop_TLU__ConstPool__TABLE_h0784e10c_0[__Vtableidx1];
+    vlSelf->top_TLU__DOT__tlu_inst__DOT__sell_score 
+        = Vtop_TLU__ConstPool__TABLE_he2537b27_0[__Vtableidx1];
+    vlSelf->top_TLU__DOT__tlu_inst__DOT__buy_sma_b 
+        = ((~ (IData)(vlSelf->rst)) & ((0x1000U < (0x1ffffU 
+                                                   & (((0xffffU 
+                                                        & (IData)(
+                                                                  VL_DIV_QQQ(64, vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_5__DOT__sum, 5ULL))) 
+                                                       - 
+                                                       (0xffffU 
+                                                        & (IData)(
+                                                                  VL_DIV_QQQ(64, vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_20__DOT__sum, 0x14ULL)))) 
+                                                      + 
+                                                      ((0xffffU 
+                                                        & (IData)(
+                                                                  VL_DIV_QQQ(64, vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_10__DOT__sum, 0xaULL))) 
+                                                       - 
+                                                       (0xffffU 
+                                                        & (IData)(
+                                                                  VL_DIV_QQQ(64, vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_50__DOT__sum, 0x32ULL))))))) 
+                                       & (IData)(vlSelf->top_TLU__DOT__tlu_inst__DOT__trade_sma_inst__DOT__confluence_rising)));
+    vlSelf->top_TLU__DOT__data_in = vlSelf->top_TLU__DOT__my_rom__DOT__rom_array
+        [vlSelf->top_TLU__DOT__rom_addr];
+    vlSelf->top_TLU__DOT__tlu_inst__DOT__data_valid_mean_b 
         = ((~ (IData)(vlSelf->rst)) & (IData)(vlSelf->top_TLU__DOT__tlu_inst__DOT__data_valid));
-    vlSelf->top_TLU__DOT__tlu_inst__DOT__data_valid_sma 
+    vlSelf->top_TLU__DOT__tlu_inst__DOT__data_valid_sma_b 
+        = ((~ (IData)(vlSelf->rst)) & (IData)(vlSelf->top_TLU__DOT__tlu_inst__DOT__data_valid));
+    vlSelf->top_TLU__DOT__tlu_inst__DOT__trade_z_inst__DOT__data_valid_next 
         = ((~ (IData)(vlSelf->rst)) & (IData)(vlSelf->top_TLU__DOT__tlu_inst__DOT__data_valid));
     vlSelf->top_TLU__DOT__tlu_inst__DOT__trade_sma_inst__DOT__confluence_falling 
         = ((~ (IData)(vlSelf->rst)) & (2U <= (3U & 
@@ -2781,19 +2813,6 @@ VL_INLINE_OPT void Vtop_TLU___024root___sequent__TOP__0(Vtop_TLU___024root* vlSe
                                                    & (IData)(
                                                              VL_DIV_QQQ(64, vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_200__DOT__sum, 0xc8ULL))) 
                                                   < (IData)(vlSelf->top_TLU__DOT__tlu_inst__DOT__trade_sma_inst__DOT__prev_200))))));
-    __Vtableidx1 = (((IData)(vlSelf->top_TLU__DOT__tlu_inst__DOT__sell_z) 
-                     << 5U) | (((IData)(vlSelf->top_TLU__DOT__tlu_inst__DOT__sell_sma) 
-                                << 4U) | (((IData)(vlSelf->top_TLU__DOT__tlu_inst__DOT__sell_mean) 
-                                           << 3U) | 
-                                          (((IData)(vlSelf->top_TLU__DOT__tlu_inst__DOT__buy_z) 
-                                            << 2U) 
-                                           | (((IData)(vlSelf->top_TLU__DOT__tlu_inst__DOT__buy_sma) 
-                                               << 1U) 
-                                              | (IData)(vlSelf->top_TLU__DOT__tlu_inst__DOT__buy_mean))))));
-    vlSelf->top_TLU__DOT__tlu_inst__DOT__buy_score 
-        = Vtop_TLU__ConstPool__TABLE_h0784e10c_0[__Vtableidx1];
-    vlSelf->top_TLU__DOT__tlu_inst__DOT__sell_score 
-        = Vtop_TLU__ConstPool__TABLE_he2537b27_0[__Vtableidx1];
     vlSelf->top_TLU__DOT__tlu_inst__DOT__trade_sma_inst__DOT__confluence_rising 
         = ((~ (IData)(vlSelf->rst)) & (2U <= (3U & 
                                               (((((((0xffffU 
@@ -2845,12 +2864,10 @@ VL_INLINE_OPT void Vtop_TLU___024root___sequent__TOP__0(Vtop_TLU___024root* vlSe
         vlSelf->top_TLU__DOT__tlu_inst__DOT__trade_sma_inst__DOT__prev_50 
             = (0xffffU & (IData)(VL_DIV_QQQ(64, vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_50__DOT__sum, 0x32ULL)));
     }
-    vlSelf->top_TLU__DOT__data_in = vlSelf->top_TLU__DOT__my_rom__DOT__rom_array
-        [vlSelf->top_TLU__DOT__rom_addr];
-    vlSelf->top_TLU__DOT__tlu_inst__DOT__data_valid 
-        = ((~ (IData)(vlSelf->rst)) & (IData)(vlSelf->top_TLU__DOT__enable));
     vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__sec_mom_mine__DOT__data_in_sq 
         = ((IData)(vlSelf->top_TLU__DOT__data_in) * (IData)(vlSelf->top_TLU__DOT__data_in));
+    vlSelf->top_TLU__DOT__tlu_inst__DOT__data_valid 
+        = ((~ (IData)(vlSelf->rst)) & (IData)(vlSelf->top_TLU__DOT__enable));
     vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_100__DOT__sum 
         = __Vdly__top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_100__DOT__sum;
     vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_200__DOT__sum 

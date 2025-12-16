@@ -13,15 +13,23 @@ module TLU #(
 
     logic[data_width-1:0] data_5, data_10, data_20, data_50, data_100, data_200, current_data;
     logic[data_width*2-1:0] sqr_mean;
-    logic buy_sma, sell_sma;
-    logic buy_mean, sell_mean;
     logic buy_z, sell_z;
 
     // control signals
     logic data_valid;
-    logic data_valid_sma;
-    logic data_valid_mean;
+    logic data_valid_sma_b;
+    logic data_valid_mean_b;
+    logic data_valid_sma_a;
+    logic data_valid_mean_a;
     logic data_valid_z;
+
+
+    // delayed signals
+    logic buy_sma_a, sell_sma_a;
+    logic buy_sma_b, sell_sma_b;
+    logic buy_mean_a, sell_mean_a;
+    logic buy_mean_b, sell_mean_b;
+
 
     // preprocessing module to get SMAs and squared mean
     Preprocessor #(
@@ -59,9 +67,9 @@ module TLU #(
         .data_50(data_50),
         .data_100(data_100),
         .data_200(data_200),
-        .buy_signal(buy_sma),
-        .sell_signal(sell_sma),
-        .data_valid_sma(data_valid_sma)
+        .buy_signal(buy_sma_b),
+        .sell_signal(sell_sma_b),
+        .data_valid_sma(data_valid_sma_b)
     );
 
     trade_MEAN #(
@@ -73,9 +81,9 @@ module TLU #(
         .short_sma(data_10),
         .long_sma(data_50),
         .current_data(current_data),
-        .buy_signal(buy_mean),
-        .sell_signal(sell_mean),
-        .data_valid_mean(data_valid_mean)
+        .buy_signal(buy_mean_b),
+        .sell_signal(sell_mean_b),
+        .data_valid_mean(data_valid_mean_b)
     );
 
     trade_Z #(
@@ -99,12 +107,12 @@ module TLU #(
 
     always_comb begin
         // different weights for different strategies
-        buy_score  = (buy_mean? 3'd4 : 3'd0) //4
-                    +(buy_sma? 3'd1 : 3'd0) //2
+        buy_score  = (buy_mean_a? 3'd4 : 3'd0) //4
+                    +(buy_sma_a? 3'd1 : 3'd0) //2
                     +(buy_z? 3'd2 : 3'd0); //1
 
-        sell_score = (sell_mean? 3'd1 : 3'd0) 
-                    + (sell_sma? 3'd1 : 3'd0) 
+        sell_score = (sell_mean_a? 3'd1 : 3'd0) 
+                    + (sell_sma_a? 3'd1 : 3'd0)
                     +(sell_z? 3'd1 : 3'd0);
     end
 
@@ -119,6 +127,27 @@ module TLU #(
     // OR delay just the buy and sell signals from sma and mean modules by 1 more cycle each
 
 
+    always_ff @( posedge clk ) begin
+        if (rst) begin
+            buy_sma_a  <= 1'b0;
+            sell_sma_a <= 1'b0;
+            buy_mean_a  <= 1'b0;
+            sell_mean_a <= 1'b0;
+            data_valid_sma_a <= 1'b0;
+            data_valid_mean_a <= 1'b0;
+        end
+        else begin
+            buy_sma_a  <= buy_sma_b;
+            sell_sma_a <= sell_sma_b;
+            buy_mean_a  <= buy_mean_b;
+            sell_mean_a <= sell_mean_b;
+            data_valid_sma_a <= data_valid_sma_b;
+            data_valid_mean_a <= data_valid_mean_b;
+        end
+        
+    end
+
+
     // generating final buy/sell signals based on scores
     always_ff @(posedge clk) begin
         if (rst) begin
@@ -127,7 +156,7 @@ module TLU #(
         end else begin
             buy_signal  <= (buy_score  >= 2);
             sell_signal <= (sell_score >= 2);
-            data_valid_end <= data_valid_mean && data_valid_sma ;//&&  data_valid_z;
+            data_valid_end <= data_valid_mean_a && data_valid_sma_a &&  data_valid_z;
         end
     end
     
