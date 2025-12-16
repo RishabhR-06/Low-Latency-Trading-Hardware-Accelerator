@@ -1,16 +1,19 @@
-module Preprocessor (
+module Preprocessor #(
+    parameter data_width = 8
+)
+(
     input logic clk,
     input logic rst,
-    input logic[7:0] data_in,
+    input logic[data_width-1:0] data_in,
     input logic enable,
-    output logic[7:0] data_5,
-    output logic[7:0] data_10,
-    output logic[7:0] data_20,
-    output logic[7:0] data_50,
-    output logic[7:0] data_100,
-    output logic[7:0] data_200,
+    output logic[data_width-1:0] data_5,
+    output logic[data_width-1:0] data_10,
+    output logic[data_width-1:0] data_20,
+    output logic[data_width-1:0] data_50,
+    output logic[data_width-1:0] data_100,
+    output logic[data_width-1:0] data_200,
     output logic[15:0] sqr_mean,
-    output logic[7:0] current_data,
+    output logic[data_width-1:0] current_data,
     output logic data_valid
 );
     // module carries out all preprocessing steps: SMAs and squared mean calculation
@@ -32,6 +35,7 @@ module Preprocessor (
     
     fixed_sma #(
         .window(5)
+        .data_width(data_width)
     ) win_5 (
         .data_in(data_in),
         .clk(clk),
@@ -43,6 +47,7 @@ module Preprocessor (
 
     fixed_sma #(
         .window(10)
+        .data_width(data_width)
     ) win_10 (
         .data_in(data_in),
         .clk(clk),
@@ -54,6 +59,7 @@ module Preprocessor (
 
     fixed_sma #(
         .window(20)
+        .data_width(data_width)
     ) win_20 (
         .data_in(data_in),
         .clk(clk),
@@ -65,6 +71,7 @@ module Preprocessor (
 
     fixed_sma #(
         .window(50)
+        .data_width(data_width)
     ) win_50 (
         .data_in(data_in),
         .clk(clk),
@@ -74,9 +81,11 @@ module Preprocessor (
         .data_valid(unused) // unused output
     );
 
+    //remove all the below i don't think i need them
 
     fixed_sma #(
         .window(100)
+        .data_width(data_width)
     ) win_100 (
         .data_in(data_in),
         .clk(clk),
@@ -89,6 +98,7 @@ module Preprocessor (
 
     fixed_sma #(
         .window(200)
+        .data_width(data_width)
     ) win_200 (
         .data_in(data_in),
         .clk(clk),

@@ -1,27 +1,28 @@
 module fixed_sma #(
-    parameter window = 4
+    parameter window = 4,
+    parameter data_width = 8
 )
 (
-    input logic [7:0] data_in,
+    input logic [data_width-1:0] data_in,
     input logic clk,
     input logic rst,
     input logic enable,
-    output logic [7:0] data_out,
+    output logic [data_width-1:0] data_out,
     output logic data_valid
 );
 
-    logic [7:0] Q[window-1:0];
-    logic [31:0] sum;
-    logic [31:0] avg;
+    logic [data_width-1:0] Q[window-1:0];
+    logic [data_width*4-1:0] sum;
+    logic [data_width*4-1:0] avg;
     // Module implementation goes here
     always_ff @( posedge clk ) begin
         if (rst) begin
-            sum <= 32'b0;
-            Q <= '{default:8'b0};
+            sum <= {{data_width*4{1'b0}}};
+            Q <= '{default: 0};
             data_valid <= 1'b0;
         end else if (enable) begin
             // Uses a sliding window to maintain the sum of the last 'window' inputs saves resources
-            sum <= sum + {{(32-8){1'b0}},data_in} - {{(32-8){1'b0}},Q[window-1]}; 
+            sum <= sum + {{(data_width*3){1'b0}},data_in} - {{(data_width*3){1'b0}},Q[window-1]}; 
             Q[window-1:1] <= Q[window-2:0];
             Q[0] <= data_in; 
             data_valid <= 1'b1;
@@ -34,7 +35,7 @@ module fixed_sma #(
     // but decided against it for flexibility and strategy purposes
 
     assign avg = sum / window; // needs to be pipelined for higher frequencies as division is latency heavy
-    assign data_out = avg[7:0];
+    assign data_out = avg[data_width-1:0];
     
 endmodule
 

@@ -1,6 +1,7 @@
 module trade_SMA #(
     // makes it adjustable from TLU
-    parameter [8:0] threshold = 9'd77,  
+    parameter data_width = 8,
+    parameter [data_width+1:0] threshold = 77,  
     parameter [1:0] confluence_threshold = 2'd3
 )(
     input logic clk,
@@ -34,12 +35,12 @@ module trade_SMA #(
 
     always_ff @( posedge clk ) begin
         if (rst) begin
-            prev_5 <= 8'b0;
-            prev_10 <= 8'b0;
-            prev_20 <= 8'b0;
-            prev_50 <= 8'b0;
-            prev_100 <= 8'b0;
-            prev_200 <= 8'b0;
+            prev_5 <= {data_width{1'b0}};
+            prev_10 <= {data_width{1'b0}};
+            prev_20 <= {data_width{1'b0}};
+            prev_50 <= {data_width{1'b0}};
+            prev_100 <= {data_width{1'b0}};
+            prev_200 <= {data_width{1'b0}};
         end
         else begin 
             prev_5 <= data_5;

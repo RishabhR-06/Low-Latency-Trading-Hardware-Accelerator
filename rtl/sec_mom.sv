@@ -1,28 +1,29 @@
 module sec_mom #(
     parameter window = 4
+    parameter data_width = 8
 )
 (
-    input logic [7:0] data_in,
+    input logic [data_width-1:0] data_in,
     input logic clk,
     input logic enable,
     input logic rst,
-    output logic [15:0] data_out,
+    output logic [data_width*2-1:0] data_out,
     output logic data_valid
 );
 
-    logic [15:0] Q[window-1:0];
-    logic [31:0] sqr_sum;
-    logic [31:0] avg;
-    logic [15:0] data_in_sq;
+    logic [data_width*2-1:0] Q[window-1:0];
+    logic [data_width*4-1:0] sqr_sum;
+    logic [data_width*4-1:0] avg;
+    logic [data_width*2-1:0] data_in_sq;
     // very similar to fixed_sma but calculates the mean of the squared inputs
     assign data_in_sq = data_in * data_in;
     always_ff @( posedge clk ) begin
         if (rst) begin
-            sqr_sum <= 32'b0;
-            Q <= '{default:16'b0};
+            sqr_sum <= {data_width*4{1'b0}};
+            Q <= '{default: 0};
             data_valid <= 1'b0;
         end else if (enable) begin
-            sqr_sum <= sqr_sum + {{(32-16){1'b0}},data_in_sq} - {{(32-16){1'b0}},Q[window-1]};
+            sqr_sum <= sqr_sum + {{(data_width*2){1'b0}},data_in_sq} - {{(data_width*2){1'b0}},Q[window-1]};
             Q[window-1:1] <= Q[window-2:0];
             Q[0] <= data_in_sq;
         end else begin
@@ -31,7 +32,7 @@ module sec_mom #(
     end
     
     assign avg = sqr_sum / window;
-    assign data_out = avg[15:0];
+    assign data_out = avg[data_width*2-1:0];
     
 endmodule
 

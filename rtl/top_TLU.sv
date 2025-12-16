@@ -1,4 +1,6 @@
-module top_TLU(
+module top_TLU#(
+    parameter data_width = 8
+)(
     input logic clk,
     input logic rst,
     output logic buy_signal,
@@ -16,8 +18,8 @@ module top_TLU(
     //need to work out how to do this properly
 
 
-    logic[7:0] data_in;
-    logic[15:0] rom_addr;
+    logic[data_width-1:0] data_in;
+    logic[data_width*2-1:0] rom_addr;
 
     logic[15:0] counter;
     logic enable;
@@ -25,8 +27,8 @@ module top_TLU(
 
 
     rom #(
-        .ADDRESS_WIDTH(16),
-        .DATA_WIDTH(8)
+        .ADDRESS_WIDTH(data_width*2),
+        .DATA_WIDTH(data_width)
     ) my_rom (
         .clk(clk),
         .addr(rom_addr),
@@ -35,12 +37,12 @@ module top_TLU(
 
     always_ff @(posedge clk or posedge rst) begin
         if (rst) begin
-            rom_addr <= 16'd0;
+            rom_addr <= {data_width*2{1'b0}};
             counter <= 16'd0;
             enable <= 1'b0;
         end
         else if (counter == 16'd60 )begin
-            rom_addr <= rom_addr + 16'd1;
+            rom_addr <= rom_addr + {{data_width*2-1{1'b0}}, {1'b1}}; // increment address to read next data point every 60 clock cycles};
             counter <= 16'd0;
             enable <= 1'b1;
         end
@@ -52,7 +54,9 @@ module top_TLU(
 
 
 
-    TLU tlu_inst (
+    TLU tlu_inst #(
+        .data_width(data_width)
+    )(
         .clk(clk),
         .rst(rst),
         .enable(enable),

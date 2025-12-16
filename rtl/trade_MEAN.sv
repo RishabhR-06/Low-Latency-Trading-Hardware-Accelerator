@@ -1,20 +1,21 @@
 module trade_MEAN #(
     parameter threshold = 8'd5
+    parameter data_width = 8
 )(
     input logic clk,
     input logic rst,
     input logic data_valid_pre,
-    input logic[7:0] short_sma,
-    input logic[7:0] long_sma,
-    input logic[7:0] current_data,
+    input logic[data_width-1:0] short_sma,
+    input logic[data_width-1:0] long_sma,
+    input logic[data_width-1:0] current_data,
     output logic buy_signal,
     output logic sell_signal,
     output logic data_valid_mean
 );
 
     logic trend;
-    logic [7:0] mid_range;
-    logic [7:0] upper_bound, lower_bound;
+    logic [data_width-1:0] mid_range;
+    logic [data_width-1:0] upper_bound, lower_bound;
     logic buy_signal_next, sell_signal_next;
 
 

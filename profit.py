@@ -11,35 +11,41 @@ mem_folder = "memory"
 
 
 # Parameters
-symbol = input("Enter stock you want ")           # Stock symbol (e.g. AAPL, TSLA, NVDA)
 period = "7d"             # Time period: "1mo", "3mo", "1y", etc.
 interval = "1m"            # Interval: "1h", "1d", "5m", etc.
 output_file = os.path.join(mem_folder, "stock.mem") # Output memory file name
 
+while True:
+    symbol = input("Enter stock you want: ")           # Stock symbol (e.g. AAPL, TSLA, NVDA)
+    
+    # get stock data
+    data = yf.download(symbol, period=period, interval=interval, progress=False)
+    prices = data["Close"].values
+    
+    # Check if any price exceeds 1023 (max integer part in Q10.6)
+    if np.any(prices > 1023):
+        print(f"Stock '{symbol}' has price(s) above $1023. Please enter another stock.")
+        continue  
+    break  
 
-# get stock data
-data = yf.download(symbol, period=period, interval=interval, progress=False)
-prices = data["Close"].values
+
+fixed_point = (prices * 64).astype(int)  # Q10.6 fixed point representation
 
 
 # want to change this to do more bits later 32 seems good a range from 0-4 billion
 # but for now 8 bits is easier to handle in verilog
 # We are also using fixed point here as our hardware can't handle floating point
 
-# Normalise to 0–255 (8-bit range)
-min_val, max_val = np.min(prices), np.max(prices)
-print(f"Real min price: {min_val}, Real max price: {max_val}")
 
-normalized = ((prices - min_val) / (max_val - min_val) * 255).astype(int)
-
-# Write to memory file
 with open(output_file, "w") as f:
-    for i, val in enumerate(normalized):
-        val = int(val)  # <-- convert to plain int to avoid numpy formatting issue
+    for i, val in enumerate(fixed_point):
+        val = int(val)  # <-- convert to plain int
         if (i + 1) % 16 == 0:
-            f.write("{:02X}\n".format(val))
+            f.write("{:04X}\n".format(val))
         else:
-            f.write("{:02X} ".format(val))
+            f.write("{:04X} ".format(val))
+
+print(f"✅ Stock data for {symbol} written to '{output_file}' with {len(fixed_point)} samples.")
 
 print(f"✅ Stock data for {symbol} written to '{output_file}' with {len(normalized)} samples.")
 
@@ -53,6 +59,7 @@ plt.grid(True)
 plt.legend()
 plt.show()
 
+"""
 # old fin.py just storing the stock prices in a mem file
 
 # next we will run the c++ tst bench code through python
@@ -176,3 +183,4 @@ plt.tight_layout()
 plt.show()
 
 print(f"Final Profit: ${profit[-1]:.2f} (holding {position} units)")
+"""

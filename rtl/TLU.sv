@@ -1,15 +1,18 @@
-module TLU (
+module TLU #(
+    parameter data_width = 8
+)
+(
     input logic clk,
     input logic rst,
     input logic enable,
-    input logic[7:0] data_in,
+    input logic[data_width-1:0] data_in,
     output logic buy_signal,
     output logic sell_signal,
     output logic data_valid_end
 );
 
-    logic[7:0] data_5, data_10, data_20, data_50, data_100, data_200, current_data;
-    logic[15:0] sqr_mean;
+    logic[data_width-1:0] data_5, data_10, data_20, data_50, data_100, data_200, current_data;
+    logic[data_width*2-1:0] sqr_mean;
     logic buy_sma, sell_sma;
     logic buy_mean, sell_mean;
     logic buy_z, sell_z;
@@ -21,7 +24,9 @@ module TLU (
     logic data_valid_z;
 
     // preprocessing module to get SMAs and squared mean
-    Preprocessor preproc_inst (
+    Preprocessor preproc_inst #(
+        .data_width(data_width)
+    )(
         .clk(clk),
         .rst(rst),
         .enable(enable),
@@ -42,7 +47,8 @@ module TLU (
 
     trade_SMA #(
         .threshold(9'd64),
-        .confluence_threshold(2'd2)     
+        .confluence_threshold(2'd2)  
+        .data_width(data_width)   
     )trade_sma_inst (
         .clk(clk),
         .rst(rst),
@@ -58,7 +64,9 @@ module TLU (
         .data_valid_sma(data_valid_sma)
     );
 
-    trade_MEAN trade_mean_inst (
+    trade_MEAN trade_mean_inst #(
+        .data_width(data_width)
+    )(
         .clk(clk),
         .rst(rst),
         .data_valid_pre(data_valid),
@@ -71,7 +79,8 @@ module TLU (
     );
 
     trade_Z #(
-        .Z_threshold(16'd512)  // standard deviation threshold of 2
+        .Z_threshold(32'b1 << 8),  // standard deviation threshold of 2
+        .data_width(data_width)
     )trade_z_inst (
         .clk(clk),
         .rst(rst),

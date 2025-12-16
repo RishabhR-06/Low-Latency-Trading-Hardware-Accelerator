@@ -1,23 +1,27 @@
 module trade_Z #(
-    parameter[15:0] Z_threshold = 16'd100  // Z-score threshold scaled by 256;
+    parameter data_width = 16
+    parameter integer_bits = 10
+    parameter fractional_bits = data_width - integer_bits
+    parameter[data_width*2-1:0] Z_threshold = 100  // Z-score threshold scaled by 256;
+    
 )(
     input logic clk,
     input logic rst,
     input logic data_valid_pre,
-    input logic[7:0] N_mean,
-    input logic[7:0] current_data,
-    input logic[15:0] N_sqr_mean,
+    input logic[data_width-1:0] N_mean,
+    input logic[data_width-1:0] current_data,
+    input logic[data_width*2-1:0] N_sqr_mean,
     output logic buy_signal,
     output logic sell_signal,
     output logic data_valid_z
 );
 
-    logic[15:0] variance;
-    logic[7:0] stddev;
-    logic[31:0] temp;
-    logic[7:0] delta;
-    logic[15:0] delta_fixed;
-    logic[15:0] z_score;
+    logic[data_width*2-1:0] variance;
+    logic[data_width-1:0] stddev;
+    logic[integer_bits-1:0] temp;
+    logic[data_width-1:0] delta;
+    logic[data_width*2-1:0] delta_fixed;
+    logic[data_width*2-1:0] z_score;
     logic buy_signal_next, sell_signal_next;
 
 
@@ -26,17 +30,24 @@ module trade_Z #(
     // Z-score calculation
     assign variance = N_sqr_mean - (N_mean * N_mean);
     // using inbuilt func for nows
-    assign temp = int'($sqrt(variance));
-    assign stddev =  temp[7:0];
+    assign temp = int'($sqrt(variance>> fractional_bits*2)); // right shift to adjust for fixed point scaling
+    assign stddev =  temp[data_width-1:0];
     // will create a square root hardware block and maybe division soon
 
 
 
+
     assign delta = (current_data > N_mean) ? (current_data - N_mean) : (N_mean - current_data);
-    assign delta_fixed = {8'b0,delta} << 8; // Scale delta by 256 for fixed-point division
-    assign z_score = (stddev != 0) ? ((delta_fixed) / {8'b0,stddev}) : 16'd0;
+
+
+    assign delta_fixed = {{data_width{1'b0}},delta} << 6; // left shift to adjust for fixed point scaling
+
+    // 10.6 representation divider by 16 bit number to get z score
+    assign z_score = (stddev != 0) ? ((delta_fixed) / {{data_width{1'b0}},stddev}) : {{data_width*2{1'b0}}};
 
     //compare Z score with threshold to generate signals
+
+
     assign buy_signal_next  = (z_score > Z_threshold) && (current_data < N_mean);
     assign sell_signal_next = (z_score > Z_threshold) && (current_data > N_mean);
 
