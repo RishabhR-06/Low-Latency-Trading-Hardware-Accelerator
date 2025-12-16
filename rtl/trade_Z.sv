@@ -1,7 +1,6 @@
 module trade_Z #(
-    parameter data_width = 16
-    parameter integer_bits = 10
-    parameter fractional_bits = data_width - integer_bits
+    parameter data_width = 16,
+    parameter integer_bits = 10,
     parameter[data_width*2-1:0] Z_threshold = 100  // Z-score threshold scaled by 256;
     
 )(
@@ -18,13 +17,13 @@ module trade_Z #(
 
     logic[data_width*2-1:0] variance;
     logic[data_width-1:0] stddev;
-    logic[integer_bits-1:0] temp;
+    logic[data_width*2-1:0] temp;
     logic[data_width-1:0] delta;
     logic[data_width*2-1:0] delta_fixed;
     logic[data_width*2-1:0] z_score;
     logic buy_signal_next, sell_signal_next;
 
-
+    parameter fractional_bits = data_width - integer_bits;
 
 
     // Z-score calculation

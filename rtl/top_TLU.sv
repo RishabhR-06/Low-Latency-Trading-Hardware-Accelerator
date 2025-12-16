@@ -1,5 +1,5 @@
 module top_TLU#(
-    parameter data_width = 8
+    parameter data_width = 16
 )(
     input logic clk,
     input logic rst,
@@ -12,14 +12,9 @@ module top_TLU#(
     // This style mimics how a cpu would read data from memory
     // In practice, data_in would come from an ADC or data feed interface
 
-    // need to change the way this inputs into the tlu as
-    //right now every clock cycle is a minute
-    // where as the tlu works at a faster clock rate than data input rate
-    //need to work out how to do this properly
-
 
     logic[data_width-1:0] data_in;
-    logic[data_width*2-1:0] rom_addr;
+    logic[data_width-1:0] rom_addr;
 
     logic[15:0] counter;
     logic enable;
@@ -27,7 +22,7 @@ module top_TLU#(
 
 
     rom #(
-        .ADDRESS_WIDTH(data_width*2),
+        .ADDRESS_WIDTH(data_width),
         .DATA_WIDTH(data_width)
     ) my_rom (
         .clk(clk),
@@ -37,12 +32,12 @@ module top_TLU#(
 
     always_ff @(posedge clk or posedge rst) begin
         if (rst) begin
-            rom_addr <= {data_width*2{1'b0}};
+            rom_addr <= 0;
             counter <= 16'd0;
             enable <= 1'b0;
         end
         else if (counter == 16'd60 )begin
-            rom_addr <= rom_addr + {{data_width*2-1{1'b0}}, {1'b1}}; // increment address to read next data point every 60 clock cycles};
+            rom_addr <= rom_addr + 1'b1; // increment address to read next data point every 60 clock cycles};
             counter <= 16'd0;
             enable <= 1'b1;
         end
@@ -54,9 +49,9 @@ module top_TLU#(
 
 
 
-    TLU tlu_inst #(
+    TLU #(
         .data_width(data_width)
-    )(
+    ) tlu_inst (
         .clk(clk),
         .rst(rst),
         .enable(enable),

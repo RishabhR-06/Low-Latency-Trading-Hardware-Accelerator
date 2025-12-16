@@ -24,9 +24,9 @@ module TLU #(
     logic data_valid_z;
 
     // preprocessing module to get SMAs and squared mean
-    Preprocessor preproc_inst #(
+    Preprocessor #(
         .data_width(data_width)
-    )(
+    )preproc_inst(
         .clk(clk),
         .rst(rst),
         .enable(enable),
@@ -46,8 +46,8 @@ module TLU #(
     // trading strategy modules
 
     trade_SMA #(
-        .threshold(9'd64),
-        .confluence_threshold(2'd2)  
+        .threshold(17'd4096),
+        .confluence_threshold(2'd2),  
         .data_width(data_width)   
     )trade_sma_inst (
         .clk(clk),
@@ -64,9 +64,9 @@ module TLU #(
         .data_valid_sma(data_valid_sma)
     );
 
-    trade_MEAN trade_mean_inst #(
+    trade_MEAN #(
         .data_width(data_width)
-    )(
+    ) trade_mean_inst(
         .clk(clk),
         .rst(rst),
         .data_valid_pre(data_valid),

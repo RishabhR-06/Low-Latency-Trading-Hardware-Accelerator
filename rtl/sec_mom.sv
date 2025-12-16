@@ -1,5 +1,5 @@
 module sec_mom #(
-    parameter window = 4
+    parameter window = 4,
     parameter data_width = 8
 )
 (

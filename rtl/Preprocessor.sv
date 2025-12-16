@@ -12,7 +12,7 @@ module Preprocessor #(
     output logic[data_width-1:0] data_50,
     output logic[data_width-1:0] data_100,
     output logic[data_width-1:0] data_200,
-    output logic[15:0] sqr_mean,
+    output logic[data_width*2-1:0] sqr_mean,
     output logic[data_width-1:0] current_data,
     output logic data_valid
 );
@@ -22,7 +22,8 @@ module Preprocessor #(
     logic unused;
     
     sec_mom #(
-        .window(20)
+        .window(20),
+        .data_width(data_width)
     ) sec_mom_mine (
         .data_in(data_in),
         .clk(clk),
@@ -34,7 +35,7 @@ module Preprocessor #(
 
     
     fixed_sma #(
-        .window(5)
+        .window(5),
         .data_width(data_width)
     ) win_5 (
         .data_in(data_in),
@@ -46,7 +47,7 @@ module Preprocessor #(
     );
 
     fixed_sma #(
-        .window(10)
+        .window(10),
         .data_width(data_width)
     ) win_10 (
         .data_in(data_in),
@@ -58,7 +59,7 @@ module Preprocessor #(
     );
 
     fixed_sma #(
-        .window(20)
+        .window(20),
         .data_width(data_width)
     ) win_20 (
         .data_in(data_in),
@@ -70,7 +71,7 @@ module Preprocessor #(
     );
 
     fixed_sma #(
-        .window(50)
+        .window(50),
         .data_width(data_width)
     ) win_50 (
         .data_in(data_in),
@@ -84,7 +85,7 @@ module Preprocessor #(
     //remove all the below i don't think i need them
 
     fixed_sma #(
-        .window(100)
+        .window(100),
         .data_width(data_width)
     ) win_100 (
         .data_in(data_in),
@@ -97,7 +98,7 @@ module Preprocessor #(
 
 
     fixed_sma #(
-        .window(200)
+        .window(200),
         .data_width(data_width)
     ) win_200 (
         .data_in(data_in),

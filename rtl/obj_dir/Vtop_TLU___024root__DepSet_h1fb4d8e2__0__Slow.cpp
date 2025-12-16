@@ -30,45 +30,53 @@ VL_ATTR_COLD void Vtop_TLU___024root___settle__TOP__0(Vtop_TLU___024root* vlSelf
     vlSelf->top_TLU__DOT__tlu_inst__DOT__sell_score 
         = Vtop_TLU__ConstPool__TABLE_he2537b27_0[__Vtableidx1];
     vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__sec_mom_mine__DOT__data_in_sq 
-        = (0xffffU & ((IData)(vlSelf->top_TLU__DOT__data_in) 
-                      * (IData)(vlSelf->top_TLU__DOT__data_in)));
+        = ((IData)(vlSelf->top_TLU__DOT__data_in) * (IData)(vlSelf->top_TLU__DOT__data_in));
     vlSelf->top_TLU__DOT__tlu_inst__DOT__trade_mean_inst__DOT__trend 
-        = ((0xffU & VL_DIV_III(32, vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_10__DOT__sum, (IData)(0xaU))) 
-           > (0xffU & VL_DIV_III(32, vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_50__DOT__sum, (IData)(0x32U))));
+        = ((0xffffU & (IData)(VL_DIV_QQQ(64, vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_10__DOT__sum, 0xaULL))) 
+           > (0xffffU & (IData)(VL_DIV_QQQ(64, vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_50__DOT__sum, 0x32ULL))));
     vlSelf->top_TLU__DOT__tlu_inst__DOT__trade_mean_inst__DOT__mid_range 
-        = (0x7fU & ((VL_DIV_III(32, vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_10__DOT__sum, (IData)(0xaU)) 
-                     + VL_DIV_III(32, vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_50__DOT__sum, (IData)(0x32U))) 
-                    >> 1U));
+        = (0x7fffU & (((IData)(VL_DIV_QQQ(64, vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_10__DOT__sum, 0xaULL)) 
+                       + (IData)(VL_DIV_QQQ(64, vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_50__DOT__sum, 0x32ULL))) 
+                      >> 1U));
     vlSelf->top_TLU__DOT__tlu_inst__DOT__trade_z_inst__DOT__z_score 
-        = ((0U != (0xffU & VL_RTOIROUND_I_D(sqrt(VL_ITOR_D_I(16, 
-                                                             (0xffffU 
-                                                              & (VL_DIV_III(32, vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__sec_mom_mine__DOT__sqr_sum, (IData)(0x14U)) 
+        = ((0U != (0xffffU & VL_RTOIROUND_I_D(sqrt(
+                                                   VL_ITOR_D_I(32, 
+                                                               (((IData)(
+                                                                         VL_DIV_QQQ(64, vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__sec_mom_mine__DOT__sqr_sum, 0x14ULL)) 
                                                                  - 
-                                                                 ((0xffU 
-                                                                   & VL_DIV_III(32, vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_20__DOT__sum, (IData)(0x14U))) 
+                                                                 ((0xffffU 
+                                                                   & (IData)(
+                                                                             VL_DIV_QQQ(64, vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_20__DOT__sum, 0x14ULL))) 
                                                                   * 
-                                                                  (0xffU 
-                                                                   & VL_DIV_III(32, vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_20__DOT__sum, (IData)(0x14U)))))))))))
-            ? (0xffffU & VL_DIV_III(16, (0xff00U & 
-                                         ((((IData)(vlSelf->top_TLU__DOT__data_in) 
-                                            > (0xffU 
-                                               & VL_DIV_III(32, vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_20__DOT__sum, (IData)(0x14U))))
-                                            ? ((IData)(vlSelf->top_TLU__DOT__data_in) 
-                                               - VL_DIV_III(32, vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_20__DOT__sum, (IData)(0x14U)))
-                                            : (VL_DIV_III(32, vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_20__DOT__sum, (IData)(0x14U)) 
-                                               - (IData)(vlSelf->top_TLU__DOT__data_in))) 
-                                          << 8U)), 
-                                    (0xffU & VL_RTOIROUND_I_D(
-                                                              sqrt(
-                                                                   VL_ITOR_D_I(16, 
-                                                                               (0xffffU 
-                                                                                & (VL_DIV_III(32, vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__sec_mom_mine__DOT__sqr_sum, (IData)(0x14U)) 
-                                                                                - 
-                                                                                ((0xffU 
-                                                                                & VL_DIV_III(32, vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_20__DOT__sum, (IData)(0x14U))) 
-                                                                                * 
-                                                                                (0xffU 
-                                                                                & VL_DIV_III(32, vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_20__DOT__sum, (IData)(0x14U))))))))))))
+                                                                  (0xffffU 
+                                                                   & (IData)(
+                                                                             VL_DIV_QQQ(64, vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_20__DOT__sum, 0x14ULL))))) 
+                                                                >> 0xcU))))))
+            ? VL_DIV_III(32, (0x3fffc0U & ((((IData)(vlSelf->top_TLU__DOT__data_in) 
+                                             > (0xffffU 
+                                                & (IData)(
+                                                          VL_DIV_QQQ(64, vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_20__DOT__sum, 0x14ULL))))
+                                             ? ((IData)(vlSelf->top_TLU__DOT__data_in) 
+                                                - (IData)(
+                                                          VL_DIV_QQQ(64, vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_20__DOT__sum, 0x14ULL)))
+                                             : ((IData)(
+                                                        VL_DIV_QQQ(64, vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_20__DOT__sum, 0x14ULL)) 
+                                                - (IData)(vlSelf->top_TLU__DOT__data_in))) 
+                                           << 6U)), 
+                         (0xffffU & VL_RTOIROUND_I_D(
+                                                     sqrt(
+                                                          VL_ITOR_D_I(32, 
+                                                                      (((IData)(
+                                                                                VL_DIV_QQQ(64, vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__sec_mom_mine__DOT__sqr_sum, 0x14ULL)) 
+                                                                        - 
+                                                                        ((0xffffU 
+                                                                          & (IData)(
+                                                                                VL_DIV_QQQ(64, vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_20__DOT__sum, 0x14ULL))) 
+                                                                         * 
+                                                                         (0xffffU 
+                                                                          & (IData)(
+                                                                                VL_DIV_QQQ(64, vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_20__DOT__sum, 0x14ULL))))) 
+                                                                       >> 0xcU))))))
             : 0U);
 }
 
@@ -85,7 +93,7 @@ VL_ATTR_COLD void Vtop_TLU___024root___initial__TOP__0(Vtop_TLU___024root* vlSel
     __Vtemp_h5d05b0f9__0[2U] = 0x72792f73U;
     __Vtemp_h5d05b0f9__0[3U] = 0x6d656d6fU;
     __Vtemp_h5d05b0f9__0[4U] = 0x2e2e2fU;
-    VL_READMEM_N(true, 8, 65536, 0, VL_CVT_PACK_STR_NW(5, __Vtemp_h5d05b0f9__0)
+    VL_READMEM_N(true, 16, 65536, 0, VL_CVT_PACK_STR_NW(5, __Vtemp_h5d05b0f9__0)
                  ,  &(vlSelf->top_TLU__DOT__my_rom__DOT__rom_array)
                  , 0, ~0ULL);
 }
@@ -124,12 +132,12 @@ VL_ATTR_COLD void Vtop_TLU___024root___ctor_var_reset(Vtop_TLU___024root* vlSelf
     vlSelf->buy_signal = VL_RAND_RESET_I(1);
     vlSelf->sell_signal = VL_RAND_RESET_I(1);
     vlSelf->data_valid = VL_RAND_RESET_I(1);
-    vlSelf->top_TLU__DOT__data_in = VL_RAND_RESET_I(8);
+    vlSelf->top_TLU__DOT__data_in = VL_RAND_RESET_I(16);
     vlSelf->top_TLU__DOT__rom_addr = VL_RAND_RESET_I(16);
     vlSelf->top_TLU__DOT__counter = VL_RAND_RESET_I(16);
     vlSelf->top_TLU__DOT__enable = VL_RAND_RESET_I(1);
     for (int __Vi0=0; __Vi0<65536; ++__Vi0) {
-        vlSelf->top_TLU__DOT__my_rom__DOT__rom_array[__Vi0] = VL_RAND_RESET_I(8);
+        vlSelf->top_TLU__DOT__my_rom__DOT__rom_array[__Vi0] = VL_RAND_RESET_I(16);
     }
     vlSelf->top_TLU__DOT__tlu_inst__DOT__buy_sma = VL_RAND_RESET_I(1);
     vlSelf->top_TLU__DOT__tlu_inst__DOT__sell_sma = VL_RAND_RESET_I(1);
@@ -142,43 +150,43 @@ VL_ATTR_COLD void Vtop_TLU___024root___ctor_var_reset(Vtop_TLU___024root* vlSelf
     vlSelf->top_TLU__DOT__tlu_inst__DOT__buy_score = VL_RAND_RESET_I(3);
     vlSelf->top_TLU__DOT__tlu_inst__DOT__sell_score = VL_RAND_RESET_I(3);
     for (int __Vi0=0; __Vi0<20; ++__Vi0) {
-        vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__sec_mom_mine__DOT__Q[__Vi0] = VL_RAND_RESET_I(16);
+        vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__sec_mom_mine__DOT__Q[__Vi0] = VL_RAND_RESET_I(32);
     }
-    vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__sec_mom_mine__DOT__sqr_sum = VL_RAND_RESET_I(32);
-    vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__sec_mom_mine__DOT__data_in_sq = VL_RAND_RESET_I(16);
+    vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__sec_mom_mine__DOT__sqr_sum = VL_RAND_RESET_Q(64);
+    vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__sec_mom_mine__DOT__data_in_sq = VL_RAND_RESET_I(32);
     for (int __Vi0=0; __Vi0<5; ++__Vi0) {
-        vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_5__DOT__Q[__Vi0] = VL_RAND_RESET_I(8);
+        vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_5__DOT__Q[__Vi0] = VL_RAND_RESET_I(16);
     }
-    vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_5__DOT__sum = VL_RAND_RESET_I(32);
+    vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_5__DOT__sum = VL_RAND_RESET_Q(64);
     for (int __Vi0=0; __Vi0<10; ++__Vi0) {
-        vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_10__DOT__Q[__Vi0] = VL_RAND_RESET_I(8);
+        vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_10__DOT__Q[__Vi0] = VL_RAND_RESET_I(16);
     }
-    vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_10__DOT__sum = VL_RAND_RESET_I(32);
+    vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_10__DOT__sum = VL_RAND_RESET_Q(64);
     for (int __Vi0=0; __Vi0<20; ++__Vi0) {
-        vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_20__DOT__Q[__Vi0] = VL_RAND_RESET_I(8);
+        vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_20__DOT__Q[__Vi0] = VL_RAND_RESET_I(16);
     }
-    vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_20__DOT__sum = VL_RAND_RESET_I(32);
+    vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_20__DOT__sum = VL_RAND_RESET_Q(64);
     for (int __Vi0=0; __Vi0<50; ++__Vi0) {
-        vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_50__DOT__Q[__Vi0] = VL_RAND_RESET_I(8);
+        vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_50__DOT__Q[__Vi0] = VL_RAND_RESET_I(16);
     }
-    vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_50__DOT__sum = VL_RAND_RESET_I(32);
+    vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_50__DOT__sum = VL_RAND_RESET_Q(64);
     for (int __Vi0=0; __Vi0<100; ++__Vi0) {
-        vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_100__DOT__Q[__Vi0] = VL_RAND_RESET_I(8);
+        vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_100__DOT__Q[__Vi0] = VL_RAND_RESET_I(16);
     }
-    vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_100__DOT__sum = VL_RAND_RESET_I(32);
+    vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_100__DOT__sum = VL_RAND_RESET_Q(64);
     for (int __Vi0=0; __Vi0<200; ++__Vi0) {
-        vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_200__DOT__Q[__Vi0] = VL_RAND_RESET_I(8);
+        vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_200__DOT__Q[__Vi0] = VL_RAND_RESET_I(16);
     }
-    vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_200__DOT__sum = VL_RAND_RESET_I(32);
-    vlSelf->top_TLU__DOT__tlu_inst__DOT__trade_sma_inst__DOT__prev_5 = VL_RAND_RESET_I(8);
-    vlSelf->top_TLU__DOT__tlu_inst__DOT__trade_sma_inst__DOT__prev_10 = VL_RAND_RESET_I(8);
-    vlSelf->top_TLU__DOT__tlu_inst__DOT__trade_sma_inst__DOT__prev_20 = VL_RAND_RESET_I(8);
-    vlSelf->top_TLU__DOT__tlu_inst__DOT__trade_sma_inst__DOT__prev_50 = VL_RAND_RESET_I(8);
-    vlSelf->top_TLU__DOT__tlu_inst__DOT__trade_sma_inst__DOT__prev_100 = VL_RAND_RESET_I(8);
-    vlSelf->top_TLU__DOT__tlu_inst__DOT__trade_sma_inst__DOT__prev_200 = VL_RAND_RESET_I(8);
+    vlSelf->top_TLU__DOT__tlu_inst__DOT__preproc_inst__DOT__win_200__DOT__sum = VL_RAND_RESET_Q(64);
+    vlSelf->top_TLU__DOT__tlu_inst__DOT__trade_sma_inst__DOT__prev_5 = VL_RAND_RESET_I(16);
+    vlSelf->top_TLU__DOT__tlu_inst__DOT__trade_sma_inst__DOT__prev_10 = VL_RAND_RESET_I(16);
+    vlSelf->top_TLU__DOT__tlu_inst__DOT__trade_sma_inst__DOT__prev_20 = VL_RAND_RESET_I(16);
+    vlSelf->top_TLU__DOT__tlu_inst__DOT__trade_sma_inst__DOT__prev_50 = VL_RAND_RESET_I(16);
+    vlSelf->top_TLU__DOT__tlu_inst__DOT__trade_sma_inst__DOT__prev_100 = VL_RAND_RESET_I(16);
+    vlSelf->top_TLU__DOT__tlu_inst__DOT__trade_sma_inst__DOT__prev_200 = VL_RAND_RESET_I(16);
     vlSelf->top_TLU__DOT__tlu_inst__DOT__trade_sma_inst__DOT__confluence_rising = VL_RAND_RESET_I(1);
     vlSelf->top_TLU__DOT__tlu_inst__DOT__trade_sma_inst__DOT__confluence_falling = VL_RAND_RESET_I(1);
     vlSelf->top_TLU__DOT__tlu_inst__DOT__trade_mean_inst__DOT__trend = VL_RAND_RESET_I(1);
-    vlSelf->top_TLU__DOT__tlu_inst__DOT__trade_mean_inst__DOT__mid_range = VL_RAND_RESET_I(8);
-    vlSelf->top_TLU__DOT__tlu_inst__DOT__trade_z_inst__DOT__z_score = VL_RAND_RESET_I(16);
+    vlSelf->top_TLU__DOT__tlu_inst__DOT__trade_mean_inst__DOT__mid_range = VL_RAND_RESET_I(16);
+    vlSelf->top_TLU__DOT__tlu_inst__DOT__trade_z_inst__DOT__z_score = VL_RAND_RESET_I(32);
 }

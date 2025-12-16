@@ -33,7 +33,7 @@ fixed_point = (prices * 64).astype(int)  # Q10.6 fixed point representation
 
 
 # want to change this to do more bits later 32 seems good a range from 0-4 billion
-# but for now 8 bits is easier to handle in verilog
+# but for now 16 bits i better resource wise just need to be careful with the stock prices
 # We are also using fixed point here as our hardware can't handle floating point
 
 
@@ -43,11 +43,10 @@ with open(output_file, "w") as f:
         if (i + 1) % 16 == 0:
             f.write("{:04X}\n".format(val))
         else:
-            f.write("{:04X} ".format(val))
+            f.write("{:04X}\n".format(val))
 
 print(f"✅ Stock data for {symbol} written to '{output_file}' with {len(fixed_point)} samples.")
-
-print(f"✅ Stock data for {symbol} written to '{output_file}' with {len(normalized)} samples.")
+# Plot stock prices
 
 
 plt.figure(figsize=(12, 5))
@@ -59,7 +58,7 @@ plt.grid(True)
 plt.legend()
 plt.show()
 
-"""
+
 # old fin.py just storing the stock prices in a mem file
 
 # next we will run the c++ tst bench code through python
@@ -99,7 +98,7 @@ max_units_budget = 1     # maximum units you can hold at any time
 # Function to load memory file
 
 def load_mem_file(filename):
-    """Load a hex memory file and return values as integers"""
+    #Load a hex memory file and return values as integers
     hex_values = []
     with open(filename, "r") as f:
         for line in f:
@@ -119,8 +118,8 @@ prices_raw = load_mem_file(stock_file)
 buy_signals = load_mem_file(buy_file)
 sell_signals = load_mem_file(sell_file)
 
-# Convert 8-bit 0-255 to actual stock price
-prices = min_val + (prices_raw / 255.0) * (max_val - min_val)
+# Convert 16-bit 0-65535 to actual stock price
+prices = prices_raw / 64.0
 
 # Ensure arrays are same length
 min_len = min(len(prices), len(buy_signals), len(sell_signals))
@@ -183,4 +182,5 @@ plt.tight_layout()
 plt.show()
 
 print(f"Final Profit: ${profit[-1]:.2f} (holding {position} units)")
-"""
+
+

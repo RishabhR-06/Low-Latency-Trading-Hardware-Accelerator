@@ -1,6 +1,6 @@
 module trade_MEAN #(
-    parameter threshold = 8'd5
-    parameter data_width = 8
+    parameter threshold = 5,
+    parameter data_width = 16
 )(
     input logic clk,
     input logic rst,

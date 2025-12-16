@@ -1,28 +1,28 @@
 module trade_SMA #(
     // makes it adjustable from TLU
-    parameter data_width = 8,
-    parameter [data_width+1:0] threshold = 77,  
+    parameter data_width = 16,
+    parameter [data_width:0] threshold = 17'd4928,  
     parameter [1:0] confluence_threshold = 2'd3
 )(
     input logic clk,
     input logic rst,
     input logic data_valid_pre,
-    input logic[7:0] data_5,
-    input logic[7:0] data_10,
-    input logic[7:0] data_20,
-    input logic[7:0] data_50,
-    input logic[7:0] data_100,
-    input logic[7:0] data_200,
+    input logic[data_width-1:0] data_5,
+    input logic[data_width-1:0] data_10,
+    input logic[data_width-1:0] data_20,
+    input logic[data_width-1:0] data_50,
+    input logic[data_width-1:0] data_100,
+    input logic[data_width-1:0] data_200,
     output logic buy_signal,
     output logic sell_signal,
     output logic data_valid_sma
 );
 
 
-    logic [7:0] prev_5, prev_10, prev_20, prev_50, prev_100, prev_200;
+    logic [data_width-1:0] prev_5, prev_10, prev_20, prev_50, prev_100, prev_200;
     logic rising_5, rising_10, rising_20, rising_50, rising_100, rising_200;
     logic falling_5, falling_10, falling_20, falling_50, falling_100, falling_200;
-    logic [8:0] up_score, down_score;
+    logic [data_width:0] up_score, down_score;
     
     logic strong_uptrend, strong_downtrend;
     logic confluence_rising, confluence_falling;
